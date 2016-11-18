@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c0abc27-1e40-4121-8793-1cd5730ba7c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/app-routing.module.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/app.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/dashboard.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/dashboard.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/dashboard.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hero-detail.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hero-detail.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/heroes.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/heroes.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/heroes.component.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/app.component.js" afterPath="$PROJECT_DIR$/app/heroes.component.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/app.component.js.map" afterPath="$PROJECT_DIR$/app/heroes.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.ts" afterPath="$PROJECT_DIR$/app/app.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.js" afterPath="$PROJECT_DIR$/app/app.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.js.map" afterPath="$PROJECT_DIR$/app/app.module.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.ts" afterPath="$PROJECT_DIR$/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero-detail.component.js" afterPath="$PROJECT_DIR$/app/hero-detail.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero-detail.component.js.map" afterPath="$PROJECT_DIR$/app/hero-detail.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero-detail.component.ts" afterPath="$PROJECT_DIR$/app/hero-detail.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero.service.js" afterPath="$PROJECT_DIR$/app/hero.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero.service.js.map" afterPath="$PROJECT_DIR$/app/hero.service.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/hero.service.ts" afterPath="$PROJECT_DIR$/app/hero.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles.css" afterPath="$PROJECT_DIR$/styles.css" />
     </list>
     <ignored path="TigerAndGoat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -125,8 +100,8 @@
       <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            <state relative-caret-position="240">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding>
                 <marker date="1479480462000" expanded="true" signature="183:332" ph="..." />
               </folding>
@@ -713,12 +688,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1479470177915</updated>
-      <workItem from="1479470180922" duration="8960000" />
+      <workItem from="1479470180922" duration="9112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8960000" />
+    <option name="totallyTimeSpent" value="9112000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1284" y="24" width="1276" height="1331" extended-state="0" />
@@ -930,8 +905,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        <state relative-caret-position="240">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
           <folding>
             <marker date="1479480462000" expanded="true" signature="183:332" ph="..." />
           </folding>
