@@ -17,6 +17,7 @@ var dashboard_component_1 = require('./dashboard.component');
 var heroes_component_1 = require('./heroes.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var hero_service_1 = require('./hero.service');
+var gameboard_component_1 = require('./game/gameboard.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,7 +32,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 dashboard_component_1.DashboardComponent,
                 hero_detail_component_1.HeroDetailComponent,
-                heroes_component_1.HeroesComponent
+                heroes_component_1.HeroesComponent,
+                gameboard_component_1.GameboardComponent
             ],
             providers: [
                 hero_service_1.HeroService],

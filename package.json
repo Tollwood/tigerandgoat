@@ -28,11 +28,13 @@
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.39",
-    "zone.js": "^0.6.25"
+    "zone.js": "^0.6.25",
+    "createjs-easeljs": "0.8.2"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.45",
+    "@types/easeljs": "0.8.35",
     "concurrently": "^3.0.0",
     "lite-server": "^2.2.2",
     "typescript": "^2.0.3"
