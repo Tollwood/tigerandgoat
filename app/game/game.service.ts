@@ -7,7 +7,7 @@ declare var createjs: any;
 @Injectable()
 export class GameService {
 
-  private lastPosition = new Position(0,0,false);
+  private lastPosition = new Position(0,0);
 
   constructor(private positionService : PositionService){}
 
@@ -95,17 +95,17 @@ export class GameService {
 
 
 export const ALLOWED_TO_MOVE_DIAGONAL: Position[] = [
-  new Position(100,100,false),
-  new Position(100,300,false),
-  new Position(100,500,false),
-  new Position(200,200,false),
-  new Position(200,400,false),
-  new Position(100,300,false),
-  new Position(300,300,false),
-  new Position(300,500,false),
-  new Position(200,400,false),
-  new Position(400,400,false),
-  new Position(100,500,false),
-  new Position(300,500,false),
-  new Position(500,500,false)
+  new Position(100,100),
+  new Position(100,300),
+  new Position(100,500),
+  new Position(200,200),
+  new Position(200,400),
+  new Position(100,300),
+  new Position(300,300),
+  new Position(300,500),
+  new Position(200,400),
+  new Position(400,400),
+  new Position(100,500),
+  new Position(300,500),
+  new Position(500,500)
 ];

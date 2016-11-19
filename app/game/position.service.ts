@@ -6,7 +6,7 @@ declare var createjs: any;
 @Injectable()
 export class PositionService {
 
-  private positions: Array<createjs.Container> = [];
+  private positions: Array<Position> = [];
 
   public initValidPositions(){
    this.positions = VALID_POSITION.map(function(position){
@@ -15,12 +15,10 @@ export class PositionService {
      let box = new createjs.Shape();
      box.graphics.setStrokeStyle(1).beginStroke("white").rect(0, 0, destHeight, destWidth);
      box.alpha = 0;
-     let positionContainer = new createjs.Container();
-     positionContainer.x = position.x;
-     positionContainer.y = position.y;
-     positionContainer.setBounds(positionContainer.x , positionContainer.y , destHeight, destWidth);
-     positionContainer.addChild(box);
-     return positionContainer;
+
+     position.setBounds(position.x, position.y, destHeight, destWidth);
+     position.addChild(box);
+     return position;
 
    });
     return this.positions;
@@ -33,33 +31,33 @@ export class PositionService {
 
 
 export const VALID_POSITION : Position[] = [
-  new Position(75, 75,true),
-  new Position(75, 175,false),
-  new Position(75, 275,false),
-  new Position(75, 375,false),
-  new Position(75, 475,true),
+  new Position(75, 75),
+  new Position(75, 175),
+  new Position(75, 275),
+  new Position(75, 375),
+  new Position(75, 475),
 
-  new Position(175, 75,false),
-  new Position(175, 175,false),
-  new Position(175, 275,false),
-  new Position(175, 375,false),
-  new Position(175, 475,false),
+  new Position(175, 75),
+  new Position(175, 175),
+  new Position(175, 275),
+  new Position(175, 375),
+  new Position(175, 475),
 
-  new Position(275, 75,false),
-  new Position(275, 175,false),
-  new Position(275, 275,false),
-  new Position(275, 375,false),
-  new Position(275, 475,false),
+  new Position(275, 75),
+  new Position(275, 175),
+  new Position(275, 275),
+  new Position(275, 375),
+  new Position(275, 475),
 
-  new Position(375, 75,false),
-  new Position(375, 175,false),
-  new Position(375, 275,false),
-  new Position(375, 375,false),
-  new Position(375, 475,false),
+  new Position(375, 75),
+  new Position(375, 175),
+  new Position(375, 275),
+  new Position(375, 375),
+  new Position(375, 475),
 
-  new Position(475, 75,true),
-  new Position(475, 175,false),
-  new Position(475, 275,false),
-  new Position(475, 375,false),
-  new Position(475, 475,true)
+  new Position(475, 75),
+  new Position(475, 175),
+  new Position(475, 275),
+  new Position(475, 375),
+  new Position(475, 475)
 ];

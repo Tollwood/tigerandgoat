@@ -14,7 +14,7 @@ var position_service_1 = require("./position.service");
 var GameService = (function () {
     function GameService(positionService) {
         this.positionService = positionService;
-        this.lastPosition = new position_1.Position(0, 0, false);
+        this.lastPosition = new position_1.Position(0, 0);
     }
     GameService.prototype.updateLastPosition = function (x, y) {
         this.lastPosition.x = x;
@@ -89,18 +89,18 @@ var GameService = (function () {
 }());
 exports.GameService = GameService;
 exports.ALLOWED_TO_MOVE_DIAGONAL = [
-    new position_1.Position(100, 100, false),
-    new position_1.Position(100, 300, false),
-    new position_1.Position(100, 500, false),
-    new position_1.Position(200, 200, false),
-    new position_1.Position(200, 400, false),
-    new position_1.Position(100, 300, false),
-    new position_1.Position(300, 300, false),
-    new position_1.Position(300, 500, false),
-    new position_1.Position(200, 400, false),
-    new position_1.Position(400, 400, false),
-    new position_1.Position(100, 500, false),
-    new position_1.Position(300, 500, false),
-    new position_1.Position(500, 500, false)
+    new position_1.Position(100, 100),
+    new position_1.Position(100, 300),
+    new position_1.Position(100, 500),
+    new position_1.Position(200, 200),
+    new position_1.Position(200, 400),
+    new position_1.Position(100, 300),
+    new position_1.Position(300, 300),
+    new position_1.Position(300, 500),
+    new position_1.Position(200, 400),
+    new position_1.Position(400, 400),
+    new position_1.Position(100, 500),
+    new position_1.Position(300, 500),
+    new position_1.Position(500, 500)
 ];
 //# sourceMappingURL=game.service.js.map

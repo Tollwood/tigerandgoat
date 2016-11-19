@@ -1,13 +1,12 @@
-export class Position{
+export class Position extends createjs.Container{
 
-  constructor(x:number,y:number, occupied: boolean){
+  constructor(x:number,y:number){
+    super();
     this.x = x;
     this.y = y;
-    this.occupied = occupied;
+    this.occupied = false;
   }
 
-  x: number;
-  y: number;
   occupied : boolean;
 
 }
