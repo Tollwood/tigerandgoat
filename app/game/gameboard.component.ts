@@ -2,11 +2,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Meeple } from './meeples/meeple';
 import { PositionService} from './position.service';
+import { Position} from './meeples/position'
 import {MeepleService} from "./meeples/meeple.service";
+import {GameService} from "./game.service";
+import {mergeResolvedReflectiveProviders} from "@angular/core/src/di/reflective_provider";
 
 declare var createjs: any;
-
-
 
 @Component({
   moduleId : module.id,
@@ -17,7 +18,8 @@ declare var createjs: any;
 export class GameboardComponent implements OnInit {
   constructor(
     private positionService: PositionService,
-    private meepleService: MeepleService) { }
+    private meepleService: MeepleService,
+    private gameService : GameService) { }
 
   ngOnInit(): void {
 
@@ -30,7 +32,9 @@ export class GameboardComponent implements OnInit {
     let meeples = this.meepleService.initMeeples();
     for(let i = 0; i < meeples.length; i++){
       let meeple = meeples[i];
-      this.addMoveEvent(meeple,stage);
+      this.addMouseDownEvent(meeple,this.gameService);
+      this.addMoveEvent(meeple,stage,this.gameService);
+      this.addSnapMeepleToPositionEvent(meeple,stage,this.gameService);
       stage.addChild(meeple);
 
 
@@ -82,14 +86,42 @@ export class GameboardComponent implements OnInit {
   }
 
 
-  private addMoveEvent(container: createjs.Container, stage :createjs.Stage){
-    container.on("pressmove", function(evt) {
-      evt.currentTarget.x = evt.stageX;
-      evt.currentTarget.y = evt.stageY;
+  private addMoveEvent(container: createjs.Container, stage :createjs.Stage, gameService : GameService){
+    container.on("pressmove", function(evt : createjs.MouseEvent) {
+      let meeple = evt.currentTarget;
+      meeple.x = evt.stageX;
+      meeple.y = evt.stageY;
       stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-
     });
   }
 
+  private addSnapMeepleToPositionEvent(meeple : createjs.Container, stage :createjs.Stage, gameService : GameService){
+    meeple.on("pressup", function(evt: createjs.MouseEvent) {
+      let meeple = evt.currentTarget;
+      if(gameService.canMove(meeple)){
+        let intersectingPosition = gameService.intersectsWithPosition(meeple);
+        let destHeight = 50;
+        let destWidth = 50;
 
+        let box : createjs.DisplayObject = intersectingPosition.getChildAt(0);
+        meeple.x = intersectingPosition.x + destWidth/2;
+        meeple.y = intersectingPosition.y + destHeight/2;
+        meeple.alpha = 1;
+        stage.update(event);
+      }
+      else{
+        meeple.x = gameService.getLastPosition().x;
+        meeple.y = gameService.getLastPosition().y;
+        stage.update(event);
+      }
+    });
+
+  }
+
+
+  private addMouseDownEvent(meeple: createjs.Container, gameService: GameService) {
+    meeple.addEventListener("mousedown", function(event : createjs.MouseEvent) {
+      gameService.updateLastPosition(event.currentTarget.x,event.currentTarget.y);
+    });
+  }
 }

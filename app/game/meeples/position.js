@@ -1,8 +1,9 @@
 "use strict";
 var Position = (function () {
-    function Position(x, y) {
+    function Position(x, y, occupied) {
         this.x = x;
         this.y = y;
+        this.occupied = occupied;
     }
     return Position;
 }());

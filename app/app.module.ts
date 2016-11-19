@@ -12,6 +12,8 @@ import { HeroService }         from './hero.service';
 import { GameboardComponent }         from './game/gameboard.component';
 import { PositionService} from './game/position.service';
 import { MeepleService} from './game/meeples/meeple.service';
+import {GameService} from "./game/game.service";
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,8 @@ import { MeepleService} from './game/meeples/meeple.service';
   providers: [
     HeroService,
     PositionService,
-    MeepleService],
+    MeepleService,
+    GameService],
   bootstrap: [
     AppComponent
   ]

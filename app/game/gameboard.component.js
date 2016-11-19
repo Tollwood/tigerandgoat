@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var position_service_1 = require('./position.service');
 var meeple_service_1 = require("./meeples/meeple.service");
+var game_service_1 = require("./game.service");
 var GameboardComponent = (function () {
-    function GameboardComponent(positionService, meepleService) {
+    function GameboardComponent(positionService, meepleService, gameService) {
         this.positionService = positionService;
         this.meepleService = meepleService;
+        this.gameService = gameService;
     }
     GameboardComponent.prototype.ngOnInit = function () {
         var stage = new createjs.Stage("gameboard");
@@ -26,7 +28,9 @@ var GameboardComponent = (function () {
         var meeples = this.meepleService.initMeeples();
         for (var i = 0; i < meeples.length; i++) {
             var meeple = meeples[i];
-            this.addMoveEvent(meeple, stage);
+            this.addMouseDownEvent(meeple, this.gameService);
+            this.addMoveEvent(meeple, stage, this.gameService);
+            this.addSnapMeepleToPositionEvent(meeple, stage, this.gameService);
             stage.addChild(meeple);
         }
         stage.mouseMoveOutside = true;
@@ -66,11 +70,37 @@ var GameboardComponent = (function () {
         stage.addChild(diagonalLine);
         return stage;
     };
-    GameboardComponent.prototype.addMoveEvent = function (container, stage) {
+    GameboardComponent.prototype.addMoveEvent = function (container, stage, gameService) {
         container.on("pressmove", function (evt) {
-            evt.currentTarget.x = evt.stageX;
-            evt.currentTarget.y = evt.stageY;
+            var meeple = evt.currentTarget;
+            meeple.x = evt.stageX;
+            meeple.y = evt.stageY;
             stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+        });
+    };
+    GameboardComponent.prototype.addSnapMeepleToPositionEvent = function (meeple, stage, gameService) {
+        meeple.on("pressup", function (evt) {
+            var meeple = evt.currentTarget;
+            if (gameService.canMove(meeple)) {
+                var intersectingPosition = gameService.intersectsWithPosition(meeple);
+                var destHeight = 50;
+                var destWidth = 50;
+                var box = intersectingPosition.getChildAt(0);
+                meeple.x = intersectingPosition.x + destWidth / 2;
+                meeple.y = intersectingPosition.y + destHeight / 2;
+                meeple.alpha = 1;
+                stage.update(event);
+            }
+            else {
+                meeple.x = gameService.getLastPosition().x;
+                meeple.y = gameService.getLastPosition().y;
+                stage.update(event);
+            }
+        });
+    };
+    GameboardComponent.prototype.addMouseDownEvent = function (meeple, gameService) {
+        meeple.addEventListener("mousedown", function (event) {
+            gameService.updateLastPosition(event.currentTarget.x, event.currentTarget.y);
         });
     };
     GameboardComponent = __decorate([
@@ -79,7 +109,7 @@ var GameboardComponent = (function () {
             selector: 'gameboard',
             templateUrl: 'gameboard.component.html',
         }), 
-        __metadata('design:paramtypes', [position_service_1.PositionService, meeple_service_1.MeepleService])
+        __metadata('design:paramtypes', [position_service_1.PositionService, meeple_service_1.MeepleService, game_service_1.GameService])
     ], GameboardComponent);
     return GameboardComponent;
 }());
