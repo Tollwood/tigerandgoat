@@ -1,1 +1,1 @@
-{"version":3,"file":"meeple.js","sourceRoot":"","sources":["meeple.ts"],"names":[],"mappings":";AAEA;IAAA;IAIA,CAAC;IAAD,aAAC;AAAD,CAAC,AAJD,IAIC;AAJqB,cAAM,SAI3B,CAAA"}
+{"version":3,"file":"meeple.js","sourceRoot":"","sources":["meeple.ts"],"names":[],"mappings":";AAAA;IACE,gBAAa,EAAS,EAAE,CAAU,EAAE,CAAS,EAAE,KAAY;QACzD,IAAI,CAAC,EAAE,GAAG,EAAE,CAAC;QACb,IAAI,CAAC,CAAC,GAAG,CAAC,CAAC;QACX,IAAI,CAAC,CAAC,GAAG,CAAC,CAAC;QACX,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;IAOH,aAAC;AAAD,CAAC,AAbD,IAaC;AAbY,cAAM,SAalB,CAAA"}

@@ -10,6 +10,8 @@ import { HeroesComponent }   from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService }         from './hero.service';
 import { GameboardComponent }         from './game/gameboard.component';
+import { PositionService} from './game/position.service';
+import { MeepleService} from './game/meeples/meeple.service';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { GameboardComponent }         from './game/gameboard.component';
     GameboardComponent
   ],
   providers: [
-    HeroService ],
+    HeroService,
+    PositionService,
+    MeepleService],
   bootstrap: [
     AppComponent
   ]

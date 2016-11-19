@@ -1,6 +1,10 @@
 "use strict";
 var Meeple = (function () {
-    function Meeple() {
+    function Meeple(id, x, y, color) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.color = color;
     }
     return Meeple;
 }());

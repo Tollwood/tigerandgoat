@@ -1,7 +1,14 @@
-import { Position } from './position';
+export class Meeple{
+  constructor( id:number, x : number, y: number, color:string){
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.color = color;
+  }
 
-export abstract class Meeple{
   id: number;
+  x : number;
+  y : number;
   position : Position;
-  abstract color : string;
+  color : string;
 }
