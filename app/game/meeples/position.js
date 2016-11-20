@@ -10,7 +10,6 @@ var Position = (function (_super) {
         _super.call(this);
         this.x = x;
         this.y = y;
-        this.occupied = false;
     }
     return Position;
 }(createjs.Container));

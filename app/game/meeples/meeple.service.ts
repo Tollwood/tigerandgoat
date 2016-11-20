@@ -6,11 +6,11 @@ declare var createjs: any;
 
 @Injectable()
 export class MeepleService {
-  private tigers: Array<createjs.Container> = [];
-  private goats: Array<createjs.Container> = [];
+  private tigers: Array<Meeple> = [];
+  private goats: Array<Meeple> = [];
 
 
-  public initMeeples(){
+  public initMeeples() : Meeple[]{
     this.tigers = this.createContainer(TIGERS, this);
     this.goats = this.createContainer(GOATS,this);
     return this.tigers.concat(this.goats);

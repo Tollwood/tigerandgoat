@@ -23,7 +23,7 @@ export class GameService {
   }
     public canMove(meeple :Meeple){
       let position =this.intersectsWithPosition(meeple);
-      return this.isMeepleOfCurrentPlayer(meeple) &&position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
+      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isNeighbourField(position) || this.canJumpOverGoat());
     }
 
   public intersectsWithPosition(meeple : createjs.Container) {
@@ -97,17 +97,17 @@ export class GameService {
     return this.lastPosition.y <= 500;
   }
 
-  moveToPosition(intersectingPosition: Position) {
-    intersectingPosition.occupied = true;
+  moveToPosition(intersectingPosition: Position, meeple :Meeple) {
+    intersectingPosition.annimal = meeple.animal;
     let position = this.getPosition(this.lastPosition.x,this.lastPosition.y);
     if(position){
-      position.occupied = false;
+      position.annimal = undefined;
     }
     this.nextPlayer();
 
   }
 
-  private getPosition(x: number, y: number) {
+  private getPosition(x: number, y: number) : Position {
     return this.positionService.getPositions().filter(function(position){
         return position.x === x && position.y ===y;
     })[0];
@@ -129,17 +129,24 @@ export class GameService {
   }
 
   updateFields(meeples: Meeple[]) {
-    let matchingPositions = this.positionService.getPositions().filter(function(position){
+    let positions = this.positionService.getPositions();
+    for(let i = 0; i< positions.length; i++){
       var match = false;
-      for(let i = 0; i< meeples.length ; i++) {
-        match = meeples[i].x === position.x && meeples[i].y === position.y;
-        if(match) return match;
+      let position = positions[i];
+      for(let j = 0; j< meeples.length ; j++) {
+        let meeple = meeples[j];
+        match = meeple.x === position.x && meeple.y === position.y;
+        if(match){
+          position.annimal = meeple.animal;
+        }
       }
-      return match;
-    });
-    matchingPositions.map(function(position){
-      position.occupied = true;
-    });
+     }
+  }
+
+  private canJumpOverGoat() {
+    let isTwoFieldsAway = false;
+    let isGoatInbetween = false;
+    isTwoFieldsAway && isGoatInbetween;
   }
 }
 

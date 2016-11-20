@@ -26,7 +26,7 @@ var GameService = (function () {
     };
     GameService.prototype.canMove = function (meeple) {
         var position = this.intersectsWithPosition(meeple);
-        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
+        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isNeighbourField(position) || this.canJumpOverGoat());
     };
     GameService.prototype.intersectsWithPosition = function (meeple) {
         var intersectionPositions = this.positionService.getPositions().filter(function (position) {
@@ -84,11 +84,11 @@ var GameService = (function () {
     GameService.prototype.onBoard = function () {
         return this.lastPosition.y <= 500;
     };
-    GameService.prototype.moveToPosition = function (intersectingPosition) {
-        intersectingPosition.occupied = true;
+    GameService.prototype.moveToPosition = function (intersectingPosition, meeple) {
+        intersectingPosition.annimal = meeple.animal;
         var position = this.getPosition(this.lastPosition.x, this.lastPosition.y);
         if (position) {
-            position.occupied = false;
+            position.annimal = undefined;
         }
         this.nextPlayer();
     };
@@ -111,18 +111,23 @@ var GameService = (function () {
         return meeple.animal === this.currentPlayer;
     };
     GameService.prototype.updateFields = function (meeples) {
-        var matchingPositions = this.positionService.getPositions().filter(function (position) {
+        var positions = this.positionService.getPositions();
+        for (var i = 0; i < positions.length; i++) {
             var match = false;
-            for (var i = 0; i < meeples.length; i++) {
-                match = meeples[i].x === position.x && meeples[i].y === position.y;
-                if (match)
-                    return match;
+            var position = positions[i];
+            for (var j = 0; j < meeples.length; j++) {
+                var meeple = meeples[j];
+                match = meeple.x === position.x && meeple.y === position.y;
+                if (match) {
+                    position.annimal = meeple.animal;
+                }
             }
-            return match;
-        });
-        matchingPositions.map(function (position) {
-            position.occupied = true;
-        });
+        }
+    };
+    GameService.prototype.canJumpOverGoat = function () {
+        var isTwoFieldsAway = false;
+        var isGoatInbetween = false;
+        isTwoFieldsAway && isGoatInbetween;
     };
     GameService = __decorate([
         core_1.Injectable(), 

@@ -99,7 +99,7 @@ export class GameboardComponent implements OnInit {
       let meeple = evt.currentTarget;
       if(gameService.canMove(meeple)){
         let intersectingPosition = gameService.intersectsWithPosition(meeple);
-        gameService.moveToPosition(intersectingPosition);
+        gameService.moveToPosition(intersectingPosition,meeple);
         let box : createjs.DisplayObject = intersectingPosition.getChildAt(0);
         meeple.x = intersectingPosition.x;
         meeple.y = intersectingPosition.y;
