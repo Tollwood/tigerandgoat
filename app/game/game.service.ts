@@ -127,6 +127,20 @@ export class GameService {
     return meeple.animal === this.currentPlayer;
 
   }
+
+  updateFields(meeples: Meeple[]) {
+    let matchingPositions = this.positionService.getPositions().filter(function(position){
+      var match = false;
+      for(let i = 0; i< meeples.length ; i++) {
+        match = meeples[i].x === position.x && meeples[i].y === position.y;
+        if(match) return match;
+      }
+      return match;
+    });
+    matchingPositions.map(function(position){
+      position.occupied = true;
+    });
+  }
 }
 
 

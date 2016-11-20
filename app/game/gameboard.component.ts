@@ -33,9 +33,8 @@ export class GameboardComponent implements OnInit {
       this.addMoveEvent(meeple,stage,this.gameService);
       this.addSnapMeepleToPositionEvent(meeple,stage,this.gameService);
       stage.addChild(meeple);
-
-
     }
+    this.gameService.updateFields(meeples);
     stage.mouseMoveOutside = true;
     stage.update();
   }

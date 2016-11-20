@@ -21,7 +21,7 @@ var PositionService = (function () {
             var box = new createjs.Shape();
             box.graphics.setStrokeStyle(1).beginStroke("white").rect(-25, -25, destHeight, destWidth);
             box.alpha = 1;
-            position.setBounds(position.x, position.y, destHeight, destWidth);
+            position.setBounds(position.x, position.y - 25, destHeight, destWidth);
             position.addChild(box);
             return position;
         });

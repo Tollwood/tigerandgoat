@@ -33,6 +33,7 @@ var GameboardComponent = (function () {
             this.addSnapMeepleToPositionEvent(meeple, stage, this.gameService);
             stage.addChild(meeple);
         }
+        this.gameService.updateFields(meeples);
         stage.mouseMoveOutside = true;
         stage.update();
     };

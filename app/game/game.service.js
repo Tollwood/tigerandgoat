@@ -110,6 +110,20 @@ var GameService = (function () {
     GameService.prototype.isMeepleOfCurrentPlayer = function (meeple) {
         return meeple.animal === this.currentPlayer;
     };
+    GameService.prototype.updateFields = function (meeples) {
+        var matchingPositions = this.positionService.getPositions().filter(function (position) {
+            var match = false;
+            for (var i = 0; i < meeples.length; i++) {
+                match = meeples[i].x === position.x && meeples[i].y === position.y;
+                if (match)
+                    return match;
+            }
+            return match;
+        });
+        matchingPositions.map(function (position) {
+            position.occupied = true;
+        });
+    };
     GameService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [position_service_1.PositionService])
