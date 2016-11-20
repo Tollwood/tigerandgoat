@@ -14,16 +14,17 @@ var position_service_1 = require("./position.service");
 var GameService = (function () {
     function GameService(positionService) {
         this.positionService = positionService;
-        this.lastPosition = new position_1.Position(0, 0);
     }
     GameService.prototype.updateLastPosition = function (x, y) {
-        this.lastPosition.x = x;
-        this.lastPosition.y = y;
+        this.lastPosition = this.getPosition(x, y);
+        if (!this.lastPosition) {
+            this.lastPosition = new position_1.Position(x, y);
+        }
         console.log("x: " + x + " y: " + y);
     };
     GameService.prototype.canMove = function (meeple) {
         var position = this.intersectsWithPosition(meeple);
-        return position && (!this.onBoard() || this.isNeighbourField(position));
+        return position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
     };
     GameService.prototype.intersectsWithPosition = function (meeple) {
         var intersectionPositions = this.positionService.getPositions().filter(function (position) {
@@ -80,6 +81,15 @@ var GameService = (function () {
     };
     GameService.prototype.onBoard = function () {
         return this.lastPosition.y <= 500;
+    };
+    GameService.prototype.moveToPosition = function (intersectingPosition) {
+        intersectingPosition.occupied = true;
+        this.getPosition(this.lastPosition.x, this.lastPosition.y).occupied = false;
+    };
+    GameService.prototype.getPosition = function (x, y) {
+        return this.positionService.getPositions().filter(function (position) {
+            return position.x === x && position.y === y;
+        })[0];
     };
     GameService = __decorate([
         core_1.Injectable(), 

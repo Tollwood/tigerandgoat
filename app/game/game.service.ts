@@ -7,18 +7,20 @@ declare var createjs: any;
 @Injectable()
 export class GameService {
 
-  private lastPosition = new Position(0,0);
+  private lastPosition ;
 
   constructor(private positionService : PositionService){}
 
   public updateLastPosition(x : number, y: number){
-    this.lastPosition.x = x;
-    this.lastPosition.y = y;
+    this.lastPosition = this.getPosition(x,y);
+    if(!this.lastPosition){
+      this.lastPosition = new Position(x,y);
+    }
     console.log("x: "+ x + " y: " + y);
   }
     public canMove(meeple :createjs.Container){
       let position =this.intersectsWithPosition(meeple);
-      return position && (!this.onBoard() || this.isNeighbourField(position));
+      return position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
     }
 
   public intersectsWithPosition(meeple : createjs.Container) {
@@ -90,6 +92,18 @@ export class GameService {
 
   private onBoard() {
     return this.lastPosition.y <= 500;
+  }
+
+  moveToPosition(intersectingPosition: Position) {
+    intersectingPosition.occupied = true;
+    this.getPosition(this.lastPosition.x,this.lastPosition.y).occupied = false;
+
+  }
+
+  private getPosition(x: number, y: number) {
+    return this.positionService.getPositions().filter(function(position){
+        return position.x === x && position.y ===y;
+    })[0];
   }
 }
 
