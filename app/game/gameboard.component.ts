@@ -1,11 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Meeple } from './meeples/meeple';
 import { PositionService} from './position.service';
-import { Position} from './meeples/position'
 import {MeepleService} from "./meeples/meeple.service";
 import {GameService} from "./game.service";
-import {mergeResolvedReflectiveProviders} from "@angular/core/src/di/reflective_provider";
 
 declare var createjs: any;
 
@@ -100,12 +97,11 @@ export class GameboardComponent implements OnInit {
       let meeple = evt.currentTarget;
       if(gameService.canMove(meeple)){
         let intersectingPosition = gameService.intersectsWithPosition(meeple);
-        let destHeight = 50;
-        let destWidth = 50;
+
 
         let box : createjs.DisplayObject = intersectingPosition.getChildAt(0);
-        meeple.x = intersectingPosition.x + destWidth/2;
-        meeple.y = intersectingPosition.y + destHeight/2;
+        meeple.x = intersectingPosition.x;
+        meeple.y = intersectingPosition.y;
         meeple.alpha = 1;
         stage.update(event);
       }

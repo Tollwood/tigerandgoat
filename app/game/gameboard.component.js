@@ -83,11 +83,9 @@ var GameboardComponent = (function () {
             var meeple = evt.currentTarget;
             if (gameService.canMove(meeple)) {
                 var intersectingPosition = gameService.intersectsWithPosition(meeple);
-                var destHeight = 50;
-                var destWidth = 50;
                 var box = intersectingPosition.getChildAt(0);
-                meeple.x = intersectingPosition.x + destWidth / 2;
-                meeple.y = intersectingPosition.y + destHeight / 2;
+                meeple.x = intersectingPosition.x;
+                meeple.y = intersectingPosition.y;
                 meeple.alpha = 1;
                 stage.update(event);
             }

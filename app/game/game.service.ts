@@ -53,11 +53,11 @@ export class GameService {
   }
 
   private isVerticalNeighbour(position: createjs.Container) {
-    return this.lastPosition.x === position.x + 25 && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+    return this.lastPosition.x === position.x  && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
   }
 
   private isHorizontalNeighbour( position: createjs.Container) {
-    return this.lastPosition.y === position.y + 25 && (this.isRightMove(position) || this.isLeftMove(position));
+    return this.lastPosition.y === position.y  && (this.isRightMove(position) || this.isLeftMove(position));
   }
 
   private isDiagnoalNeighbour(position: createjs.Container) {
@@ -72,20 +72,20 @@ export class GameService {
   }
 
   private isUpwardsMove(position: createjs.Container) {
-    return this.lastPosition.y + 75 === position.y;
+    return this.lastPosition.y + 100 === position.y;
   }
 
   private isRightMove(position: createjs.Container) {
-    return this.lastPosition.x + 75 === position.x;
+    return this.lastPosition.x + 100 === position.x;
   }
 
   private isDownWardsMove(position: createjs.Container) {
 
-    return this.lastPosition.y - 125 === position.y;
+    return this.lastPosition.y - 100 === position.y;
   }
 
   private isLeftMove(position: createjs.Container) {
-    return this.lastPosition.x -125 === position.x;
+    return this.lastPosition.x -100 === position.x;
   }
 
   private onBoard() {
@@ -97,15 +97,16 @@ export class GameService {
 export const ALLOWED_TO_MOVE_DIAGONAL: Position[] = [
   new Position(100,100),
   new Position(100,300),
+  new Position(100,300),
   new Position(100,500),
   new Position(200,200),
   new Position(200,400),
-  new Position(100,300),
+  new Position(300,100),
   new Position(300,300),
   new Position(300,500),
   new Position(200,400),
   new Position(400,400),
-  new Position(100,500),
-  new Position(300,500),
+  new Position(500,100),
+  new Position(500,300),
   new Position(500,500)
 ];

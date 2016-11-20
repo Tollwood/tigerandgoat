@@ -52,10 +52,10 @@ var GameService = (function () {
         return this.isVerticalNeighbour(position) || this.isHorizontalNeighbour(position) || this.isDiagnoalNeighbour(position);
     };
     GameService.prototype.isVerticalNeighbour = function (position) {
-        return this.lastPosition.x === position.x + 25 && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+        return this.lastPosition.x === position.x && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
     };
     GameService.prototype.isHorizontalNeighbour = function (position) {
-        return this.lastPosition.y === position.y + 25 && (this.isRightMove(position) || this.isLeftMove(position));
+        return this.lastPosition.y === position.y && (this.isRightMove(position) || this.isLeftMove(position));
     };
     GameService.prototype.isDiagnoalNeighbour = function (position) {
         return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position) || this.isLeftMove(position)) && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
@@ -67,16 +67,16 @@ var GameService = (function () {
         return allowedPositions.length > 0;
     };
     GameService.prototype.isUpwardsMove = function (position) {
-        return this.lastPosition.y + 75 === position.y;
+        return this.lastPosition.y + 100 === position.y;
     };
     GameService.prototype.isRightMove = function (position) {
-        return this.lastPosition.x + 75 === position.x;
+        return this.lastPosition.x + 100 === position.x;
     };
     GameService.prototype.isDownWardsMove = function (position) {
-        return this.lastPosition.y - 125 === position.y;
+        return this.lastPosition.y - 100 === position.y;
     };
     GameService.prototype.isLeftMove = function (position) {
-        return this.lastPosition.x - 125 === position.x;
+        return this.lastPosition.x - 100 === position.x;
     };
     GameService.prototype.onBoard = function () {
         return this.lastPosition.y <= 500;
@@ -91,16 +91,17 @@ exports.GameService = GameService;
 exports.ALLOWED_TO_MOVE_DIAGONAL = [
     new position_1.Position(100, 100),
     new position_1.Position(100, 300),
+    new position_1.Position(100, 300),
     new position_1.Position(100, 500),
     new position_1.Position(200, 200),
     new position_1.Position(200, 400),
-    new position_1.Position(100, 300),
+    new position_1.Position(300, 100),
     new position_1.Position(300, 300),
     new position_1.Position(300, 500),
     new position_1.Position(200, 400),
     new position_1.Position(400, 400),
-    new position_1.Position(100, 500),
-    new position_1.Position(300, 500),
+    new position_1.Position(500, 100),
+    new position_1.Position(500, 300),
     new position_1.Position(500, 500)
 ];
 //# sourceMappingURL=game.service.js.map

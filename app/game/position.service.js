@@ -19,8 +19,8 @@ var PositionService = (function () {
             var destHeight = 50;
             var destWidth = 50;
             var box = new createjs.Shape();
-            box.graphics.setStrokeStyle(1).beginStroke("white").rect(0, 0, destHeight, destWidth);
-            box.alpha = 0;
+            box.graphics.setStrokeStyle(1).beginStroke("white").rect(-25, -25, destHeight, destWidth);
+            box.alpha = 1;
             position.setBounds(position.x, position.y, destHeight, destWidth);
             position.addChild(box);
             return position;
@@ -38,30 +38,30 @@ var PositionService = (function () {
 }());
 exports.PositionService = PositionService;
 exports.VALID_POSITION = [
-    new position_1.Position(75, 75),
-    new position_1.Position(75, 175),
-    new position_1.Position(75, 275),
-    new position_1.Position(75, 375),
-    new position_1.Position(75, 475),
-    new position_1.Position(175, 75),
-    new position_1.Position(175, 175),
-    new position_1.Position(175, 275),
-    new position_1.Position(175, 375),
-    new position_1.Position(175, 475),
-    new position_1.Position(275, 75),
-    new position_1.Position(275, 175),
-    new position_1.Position(275, 275),
-    new position_1.Position(275, 375),
-    new position_1.Position(275, 475),
-    new position_1.Position(375, 75),
-    new position_1.Position(375, 175),
-    new position_1.Position(375, 275),
-    new position_1.Position(375, 375),
-    new position_1.Position(375, 475),
-    new position_1.Position(475, 75),
-    new position_1.Position(475, 175),
-    new position_1.Position(475, 275),
-    new position_1.Position(475, 375),
-    new position_1.Position(475, 475)
+    new position_1.Position(100, 100),
+    new position_1.Position(100, 200),
+    new position_1.Position(100, 300),
+    new position_1.Position(100, 400),
+    new position_1.Position(100, 500),
+    new position_1.Position(200, 100),
+    new position_1.Position(200, 200),
+    new position_1.Position(200, 300),
+    new position_1.Position(200, 400),
+    new position_1.Position(200, 500),
+    new position_1.Position(300, 100),
+    new position_1.Position(300, 200),
+    new position_1.Position(300, 300),
+    new position_1.Position(300, 400),
+    new position_1.Position(300, 500),
+    new position_1.Position(400, 100),
+    new position_1.Position(400, 200),
+    new position_1.Position(400, 300),
+    new position_1.Position(400, 400),
+    new position_1.Position(400, 500),
+    new position_1.Position(500, 100),
+    new position_1.Position(500, 200),
+    new position_1.Position(500, 300),
+    new position_1.Position(500, 400),
+    new position_1.Position(500, 500)
 ];
 //# sourceMappingURL=position.service.js.map
