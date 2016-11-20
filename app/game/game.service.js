@@ -26,7 +26,7 @@ var GameService = (function () {
     };
     GameService.prototype.canMove = function (meeple) {
         var position = this.intersectsWithPosition(meeple);
-        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isDirectNeighbourField(position) || this.canJumpOverGoat());
+        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position, 1) || this.canJumpOverGoat(position, meeple));
     };
     GameService.prototype.intersectsWithPosition = function (meeple) {
         var intersectionPositions = this.positionService.getPositions().filter(function (position) {
@@ -51,8 +51,8 @@ var GameService = (function () {
     GameService.prototype.getLastPosition = function () {
         return this.lastPosition;
     };
-    GameService.prototype.isDirectNeighbourField = function (position) {
-        return this.isVerticalNeighbour(position, 1) || this.isHorizontalNeighbour(position, 1) || this.isDiagnoalNeighbour(position, 1);
+    GameService.prototype.isNFieldsAway = function (position, steps) {
+        return this.isVerticalNeighbour(position, steps) || this.isHorizontalNeighbour(position, steps) || this.isDiagnoalNeighbour(position, steps);
     };
     GameService.prototype.isVerticalNeighbour = function (position, steps) {
         return this.lastPosition.x === position.x && (this.isUpwardsMove(position, steps) || this.isDownWardsMove(position, steps));
@@ -70,25 +70,25 @@ var GameService = (function () {
         return allowedPositions.length > 0;
     };
     GameService.prototype.isUpwardsMove = function (position, steps) {
-        return this.lastPosition.y + 100 === position.y;
+        return this.lastPosition.y + 100 * steps === position.y;
     };
     GameService.prototype.isRightMove = function (position, steps) {
-        return this.lastPosition.x + 100 === position.x;
+        return this.lastPosition.x + 100 * steps === position.x;
     };
     GameService.prototype.isDownWardsMove = function (position, steps) {
-        return this.lastPosition.y - 100 === position.y;
+        return this.lastPosition.y - 100 * steps === position.y;
     };
     GameService.prototype.isLeftMove = function (position, steps) {
-        return this.lastPosition.x - 100 === position.x;
+        return this.lastPosition.x - 100 * steps === position.x;
     };
     GameService.prototype.onBoard = function () {
         return this.lastPosition.y <= 500;
     };
     GameService.prototype.moveToPosition = function (intersectingPosition, meeple) {
-        intersectingPosition.annimal = meeple.animal;
+        intersectingPosition.animal = meeple.animal;
         var position = this.getPosition(this.lastPosition.x, this.lastPosition.y);
         if (position) {
-            position.annimal = undefined;
+            position.animal = undefined;
         }
         this.nextPlayer();
     };
@@ -119,15 +119,16 @@ var GameService = (function () {
                 var meeple = meeples[j];
                 match = meeple.x === position.x && meeple.y === position.y;
                 if (match) {
-                    position.annimal = meeple.animal;
+                    position.animal = meeple.animal;
                 }
             }
         }
     };
-    GameService.prototype.canJumpOverGoat = function () {
-        var isTwoFieldsAway = false;
-        var isGoatInbetween = false;
-        isTwoFieldsAway && isGoatInbetween;
+    GameService.prototype.canJumpOverGoat = function (position, meeple) {
+        var isTwoFieldsAway = this.isNFieldsAway(position, 2);
+        var isTiger = meeple.animal === Animal_1.Animal.Tiger;
+        var isGoatInbetween = true;
+        return isTiger && isTwoFieldsAway && isGoatInbetween;
     };
     GameService = __decorate([
         core_1.Injectable(), 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0abc27-1e40-4121-8793-1cd5730ba7c1" name="Default" comment="">
+    <list default="true" id="0c0abc27-1e40-4121-8793-1cd5730ba7c1" name="Default" comment="refactor checks to also check for two fields away">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js" afterPath="$PROJECT_DIR$/app/game/game.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js.map" afterPath="$PROJECT_DIR$/app/game/game.service.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.ts" afterPath="$PROJECT_DIR$/app/game/game.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/position.ts" afterPath="$PROJECT_DIR$/app/game/meeples/position.ts" />
     </list>
     <ignored path="TigerAndGoat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,11 +43,23 @@
       <file leaf-file-name="game.service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/game/game.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="749">
-              <caret line="146" column="31" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="31" />
+            <state relative-caret-position="1094">
+              <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="n#!!block;n#intersectsWithPosition#0;n#GameService#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/game/game.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="611">
+              <caret line="121" column="29" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
+              <folding>
+                <marker date="1479668439000" expanded="true" signature="981:1695" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -56,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/app/game/meeples/position.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -70,16 +83,6 @@
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="meeple.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/game/meeples/meeple.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -163,9 +166,10 @@
         <option value="$PROJECT_DIR$/app/game/meeples/Animal.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/meeple.ts" />
         <option value="$PROJECT_DIR$/app/game/position.service.ts" />
-        <option value="$PROJECT_DIR$/app/game/meeples/position.ts" />
         <option value="$PROJECT_DIR$/app/game/gameboard.component.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/meeple.service.ts" />
+        <option value="$PROJECT_DIR$/app/game/game.service.js" />
+        <option value="$PROJECT_DIR$/app/game/meeples/position.ts" />
         <option value="$PROJECT_DIR$/app/game/game.service.ts" />
       </list>
     </option>
@@ -742,7 +746,7 @@
       <updated>1479470177915</updated>
       <workItem from="1479470180922" duration="9112000" />
       <workItem from="1479494222135" duration="14641000" />
-      <workItem from="1479540607208" duration="32417000" />
+      <workItem from="1479540607208" duration="32930000" />
     </task>
     <task id="LOCAL-00001" summary="extend position with createjs.container&#10;">
       <created>1479599438448</created>
@@ -772,11 +776,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479667528314</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactor checks to also check for two fields away">
+      <created>1479667907408</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1479667907408</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56170000" />
+    <option name="totallyTimeSpent" value="56683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="757" y="24" width="1803" height="1331" extended-state="0" />
@@ -825,7 +836,8 @@
     <MESSAGE value="Add Feature: One Player after the other" />
     <MESSAGE value="FIx Bug so that the fields are initialized correctly" />
     <MESSAGE value="remember the current animal on a field so that we can verify if its goat" />
-    <option name="LAST_COMMIT_MESSAGE" value="remember the current animal on a field so that we can verify if its goat" />
+    <MESSAGE value="refactor checks to also check for two fields away" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor checks to also check for two fields away" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -848,14 +860,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1182,28 +1186,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/meeples/Animal.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/meeples/meeple.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1234,14 +1220,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/meeples/position.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/gameboard.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1253,10 +1231,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/meeples/meeple.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/game.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="121" column="29" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
+          <folding>
+            <marker date="1479668439000" expanded="true" signature="981:1695" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/meeples/position.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/game.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="146" column="31" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="31" />
+        <state relative-caret-position="1094">
+          <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="n#!!block;n#intersectsWithPosition#0;n#GameService#0" expanded="false" />

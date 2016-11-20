@@ -23,7 +23,7 @@ export class GameService {
   }
     public canMove(meeple :Meeple){
       let position =this.intersectsWithPosition(meeple);
-      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isDirectNeighbourField(position) || this.canJumpOverGoat());
+      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position,1) || this.canJumpOverGoat(position,meeple));
     }
 
   public intersectsWithPosition(meeple : createjs.Container) {
@@ -53,8 +53,8 @@ export class GameService {
     return this.lastPosition;
   }
 
-  private isDirectNeighbourField(position: createjs.Container) {
-    return this.isVerticalNeighbour(position,1) || this.isHorizontalNeighbour(position,1) || this.isDiagnoalNeighbour(position,1);
+  private isNFieldsAway(position: createjs.Container,steps:number) {
+    return this.isVerticalNeighbour(position,steps) || this.isHorizontalNeighbour(position,steps) || this.isDiagnoalNeighbour(position,steps);
   }
 
   private isVerticalNeighbour(position: createjs.Container,steps:number) {
@@ -77,20 +77,20 @@ export class GameService {
   }
 
   private isUpwardsMove(position: createjs.Container,steps : number) {
-    return this.lastPosition.y + 100 === position.y;
+    return this.lastPosition.y + 100 * steps === position.y;
   }
 
   private isRightMove(position: createjs.Container,steps : number) {
-    return this.lastPosition.x + 100 === position.x;
+    return this.lastPosition.x + 100 * steps === position.x;
   }
 
   private isDownWardsMove(position: createjs.Container,steps : number) {
 
-    return this.lastPosition.y - 100 === position.y;
+    return this.lastPosition.y - 100 * steps === position.y;
   }
 
   private isLeftMove(position: createjs.Container,steps : number) {
-    return this.lastPosition.x -100 === position.x;
+    return this.lastPosition.x -100 * steps === position.x;
   }
 
   private onBoard() {
@@ -98,10 +98,10 @@ export class GameService {
   }
 
   moveToPosition(intersectingPosition: Position, meeple :Meeple) {
-    intersectingPosition.annimal = meeple.animal;
+    intersectingPosition.animal = meeple.animal;
     let position = this.getPosition(this.lastPosition.x,this.lastPosition.y);
     if(position){
-      position.annimal = undefined;
+      position.animal = undefined;
     }
     this.nextPlayer();
 
@@ -137,16 +137,17 @@ export class GameService {
         let meeple = meeples[j];
         match = meeple.x === position.x && meeple.y === position.y;
         if(match){
-          position.annimal = meeple.animal;
+          position.animal = meeple.animal;
         }
       }
      }
   }
 
-  private canJumpOverGoat() {
-    let isTwoFieldsAway = false;
-    let isGoatInbetween = false;
-    isTwoFieldsAway && isGoatInbetween;
+  private canJumpOverGoat(position: createjs.Container, meeple:Meeple) {
+    let isTwoFieldsAway = this.isNFieldsAway(position,2);
+  let isTiger = meeple.animal === Animal.Tiger;
+    let isGoatInbetween = true;
+    return isTiger && isTwoFieldsAway && isGoatInbetween;
   }
 }
 

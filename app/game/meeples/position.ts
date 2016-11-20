@@ -7,6 +7,6 @@ export class Position extends createjs.Container{
     this.y = y;
   }
 
-  annimal : Animal;
+  animal : Animal;
 
 }
