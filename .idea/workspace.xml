@@ -6,14 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js" afterPath="$PROJECT_DIR$/app/game/game.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js.map" afterPath="$PROJECT_DIR$/app/game/game.service.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.ts" afterPath="$PROJECT_DIR$/app/game/game.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.js" afterPath="$PROJECT_DIR$/app/game/gameboard.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.js.map" afterPath="$PROJECT_DIR$/app/game/gameboard.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.ts" afterPath="$PROJECT_DIR$/app/game/gameboard.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.service.js.map" afterPath="$PROJECT_DIR$/app/game/meeples/meeple.service.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.service.ts" afterPath="$PROJECT_DIR$/app/game/meeples/meeple.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/position.js" afterPath="$PROJECT_DIR$/app/game/meeples/position.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/position.js.map" afterPath="$PROJECT_DIR$/app/game/meeples/position.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/meeples/position.ts" afterPath="$PROJECT_DIR$/app/game/meeples/position.ts" />
     </list>
     <ignored path="TigerAndGoat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +42,8 @@
       <file leaf-file-name="game.service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/game/game.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="139" column="43" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
+            <state relative-caret-position="749">
+              <caret line="146" column="31" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="31" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="n#!!block;n#intersectsWithPosition#0;n#GameService#0" expanded="false" />
@@ -750,7 +742,7 @@
       <updated>1479470177915</updated>
       <workItem from="1479470180922" duration="9112000" />
       <workItem from="1479494222135" duration="14641000" />
-      <workItem from="1479540607208" duration="32078000" />
+      <workItem from="1479540607208" duration="32417000" />
     </task>
     <task id="LOCAL-00001" summary="extend position with createjs.container&#10;">
       <created>1479599438448</created>
@@ -773,11 +765,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479656918969</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="remember the current animal on a field so that we can verify if its goat">
+      <created>1479667528314</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1479667528314</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55831000" />
+    <option name="totallyTimeSpent" value="56170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="757" y="24" width="1803" height="1331" extended-state="0" />
@@ -825,7 +824,8 @@
     <MESSAGE value="extend position with createjs.container&#10;" />
     <MESSAGE value="Add Feature: One Player after the other" />
     <MESSAGE value="FIx Bug so that the fields are initialized correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIx Bug so that the fields are initialized correctly" />
+    <MESSAGE value="remember the current animal on a field so that we can verify if its goat" />
+    <option name="LAST_COMMIT_MESSAGE" value="remember the current animal on a field so that we can verify if its goat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1255,8 +1255,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/game.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="139" column="43" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
+        <state relative-caret-position="749">
+          <caret line="146" column="31" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="31" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="n#!!block;n#intersectsWithPosition#0;n#GameService#0" expanded="false" />

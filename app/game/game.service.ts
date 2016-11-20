@@ -23,7 +23,7 @@ export class GameService {
   }
     public canMove(meeple :Meeple){
       let position =this.intersectsWithPosition(meeple);
-      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isNeighbourField(position) || this.canJumpOverGoat());
+      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isDirectNeighbourField(position) || this.canJumpOverGoat());
     }
 
   public intersectsWithPosition(meeple : createjs.Container) {
@@ -53,20 +53,20 @@ export class GameService {
     return this.lastPosition;
   }
 
-  private isNeighbourField( position: createjs.Container) {
-    return this.isVerticalNeighbour(position) || this.isHorizontalNeighbour(position) || this.isDiagnoalNeighbour(position);
+  private isDirectNeighbourField(position: createjs.Container) {
+    return this.isVerticalNeighbour(position,1) || this.isHorizontalNeighbour(position,1) || this.isDiagnoalNeighbour(position,1);
   }
 
-  private isVerticalNeighbour(position: createjs.Container) {
-    return this.lastPosition.x === position.x  && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+  private isVerticalNeighbour(position: createjs.Container,steps:number) {
+    return this.lastPosition.x === position.x  && (this.isUpwardsMove(position,steps) || this.isDownWardsMove(position,steps));
   }
 
-  private isHorizontalNeighbour( position: createjs.Container) {
-    return this.lastPosition.y === position.y  && (this.isRightMove(position) || this.isLeftMove(position));
+  private isHorizontalNeighbour( position: createjs.Container,steps:number) {
+    return this.lastPosition.y === position.y  && (this.isRightMove(position,steps) || this.isLeftMove(position,steps));
   }
 
-  private isDiagnoalNeighbour(position: createjs.Container) {
-    return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position) || this.isLeftMove(position)) && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+  private isDiagnoalNeighbour(position: createjs.Container,steps:number) {
+    return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position,steps) || this.isLeftMove(position,steps)) && (this.isUpwardsMove(position,steps) || this.isDownWardsMove(position,steps));
   }
 
   private isAllowedToMoveDiagonal(lastPosition: Position) {
@@ -76,20 +76,20 @@ export class GameService {
     return allowedPositions.length > 0;
   }
 
-  private isUpwardsMove(position: createjs.Container) {
+  private isUpwardsMove(position: createjs.Container,steps : number) {
     return this.lastPosition.y + 100 === position.y;
   }
 
-  private isRightMove(position: createjs.Container) {
+  private isRightMove(position: createjs.Container,steps : number) {
     return this.lastPosition.x + 100 === position.x;
   }
 
-  private isDownWardsMove(position: createjs.Container) {
+  private isDownWardsMove(position: createjs.Container,steps : number) {
 
     return this.lastPosition.y - 100 === position.y;
   }
 
-  private isLeftMove(position: createjs.Container) {
+  private isLeftMove(position: createjs.Container,steps : number) {
     return this.lastPosition.x -100 === position.x;
   }
 

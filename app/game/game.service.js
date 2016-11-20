@@ -26,7 +26,7 @@ var GameService = (function () {
     };
     GameService.prototype.canMove = function (meeple) {
         var position = this.intersectsWithPosition(meeple);
-        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isNeighbourField(position) || this.canJumpOverGoat());
+        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.annimal && (!this.onBoard() || this.isDirectNeighbourField(position) || this.canJumpOverGoat());
     };
     GameService.prototype.intersectsWithPosition = function (meeple) {
         var intersectionPositions = this.positionService.getPositions().filter(function (position) {
@@ -51,17 +51,17 @@ var GameService = (function () {
     GameService.prototype.getLastPosition = function () {
         return this.lastPosition;
     };
-    GameService.prototype.isNeighbourField = function (position) {
-        return this.isVerticalNeighbour(position) || this.isHorizontalNeighbour(position) || this.isDiagnoalNeighbour(position);
+    GameService.prototype.isDirectNeighbourField = function (position) {
+        return this.isVerticalNeighbour(position, 1) || this.isHorizontalNeighbour(position, 1) || this.isDiagnoalNeighbour(position, 1);
     };
-    GameService.prototype.isVerticalNeighbour = function (position) {
-        return this.lastPosition.x === position.x && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+    GameService.prototype.isVerticalNeighbour = function (position, steps) {
+        return this.lastPosition.x === position.x && (this.isUpwardsMove(position, steps) || this.isDownWardsMove(position, steps));
     };
-    GameService.prototype.isHorizontalNeighbour = function (position) {
-        return this.lastPosition.y === position.y && (this.isRightMove(position) || this.isLeftMove(position));
+    GameService.prototype.isHorizontalNeighbour = function (position, steps) {
+        return this.lastPosition.y === position.y && (this.isRightMove(position, steps) || this.isLeftMove(position, steps));
     };
-    GameService.prototype.isDiagnoalNeighbour = function (position) {
-        return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position) || this.isLeftMove(position)) && (this.isUpwardsMove(position) || this.isDownWardsMove(position));
+    GameService.prototype.isDiagnoalNeighbour = function (position, steps) {
+        return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position, steps) || this.isLeftMove(position, steps)) && (this.isUpwardsMove(position, steps) || this.isDownWardsMove(position, steps));
     };
     GameService.prototype.isAllowedToMoveDiagonal = function (lastPosition) {
         var allowedPositions = exports.ALLOWED_TO_MOVE_DIAGONAL.filter(function (position) {
@@ -69,16 +69,16 @@ var GameService = (function () {
         });
         return allowedPositions.length > 0;
     };
-    GameService.prototype.isUpwardsMove = function (position) {
+    GameService.prototype.isUpwardsMove = function (position, steps) {
         return this.lastPosition.y + 100 === position.y;
     };
-    GameService.prototype.isRightMove = function (position) {
+    GameService.prototype.isRightMove = function (position, steps) {
         return this.lastPosition.x + 100 === position.x;
     };
-    GameService.prototype.isDownWardsMove = function (position) {
+    GameService.prototype.isDownWardsMove = function (position, steps) {
         return this.lastPosition.y - 100 === position.y;
     };
-    GameService.prototype.isLeftMove = function (position) {
+    GameService.prototype.isLeftMove = function (position, steps) {
         return this.lastPosition.x - 100 === position.x;
     };
     GameService.prototype.onBoard = function () {
