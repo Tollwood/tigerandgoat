@@ -73,9 +73,11 @@ var GameboardComponent = (function () {
     GameboardComponent.prototype.addMoveEvent = function (container, stage, gameService) {
         container.on("pressmove", function (evt) {
             var meeple = evt.currentTarget;
-            meeple.x = evt.stageX;
-            meeple.y = evt.stageY;
-            stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+            if (gameService.isMeepleOfCurrentPlayer(meeple)) {
+                meeple.x = evt.stageX;
+                meeple.y = evt.stageY;
+                stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+            }
         });
     };
     GameboardComponent.prototype.addSnapMeepleToPositionEvent = function (meeple, stage, gameService) {

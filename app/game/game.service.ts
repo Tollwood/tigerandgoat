@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Position } from './meeples/position';
 import {PositionService} from "./position.service";
+import {Meeple} from "./meeples/meeple";
+import {Animal} from "./meeples/Animal";
 
 declare var createjs: any;
 
@@ -8,6 +10,7 @@ declare var createjs: any;
 export class GameService {
 
   private lastPosition ;
+  private currentPlayer : Animal = Animal.Goat;
 
   constructor(private positionService : PositionService){}
 
@@ -18,9 +21,9 @@ export class GameService {
     }
     console.log("x: "+ x + " y: " + y);
   }
-    public canMove(meeple :createjs.Container){
+    public canMove(meeple :Meeple){
       let position =this.intersectsWithPosition(meeple);
-      return position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
+      return this.isMeepleOfCurrentPlayer(meeple) &&position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
     }
 
   public intersectsWithPosition(meeple : createjs.Container) {
@@ -96,7 +99,11 @@ export class GameService {
 
   moveToPosition(intersectingPosition: Position) {
     intersectingPosition.occupied = true;
-    this.getPosition(this.lastPosition.x,this.lastPosition.y).occupied = false;
+    let position = this.getPosition(this.lastPosition.x,this.lastPosition.y);
+    if(position){
+      position.occupied = false;
+    }
+    this.nextPlayer();
 
   }
 
@@ -104,6 +111,21 @@ export class GameService {
     return this.positionService.getPositions().filter(function(position){
         return position.x === x && position.y ===y;
     })[0];
+  }
+
+  private nextPlayer(){
+    switch (this.currentPlayer){
+      case Animal.Goat:
+        this.currentPlayer = Animal.Tiger;
+        break;
+      case Animal.Tiger:
+        this.currentPlayer = Animal.Goat;
+        break;
+    }
+  }
+  isMeepleOfCurrentPlayer(meeple: Meeple) {
+    return meeple.animal === this.currentPlayer;
+
   }
 }
 

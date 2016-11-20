@@ -86,9 +86,12 @@ export class GameboardComponent implements OnInit {
   private addMoveEvent(container: createjs.Container, stage :createjs.Stage, gameService : GameService){
     container.on("pressmove", function(evt : createjs.MouseEvent) {
       let meeple = evt.currentTarget;
-      meeple.x = evt.stageX;
-      meeple.y = evt.stageY;
-      stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+      if(gameService.isMeepleOfCurrentPlayer(meeple)){
+        meeple.x = evt.stageX;
+        meeple.y = evt.stageY;
+        stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+
+      }
     });
   }
 

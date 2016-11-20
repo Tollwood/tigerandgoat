@@ -1,14 +1,15 @@
-export class Meeple{
-  constructor( id:number, x : number, y: number, color:string){
+import {Animal} from "./Animal";
+export class Meeple extends createjs.Container{
+  constructor( id:number, x : number, y: number, animal:Animal){
+    super();
     this.id = id;
     this.x = x;
     this.y = y;
-    this.color = color;
+    this.animal = animal;
   }
-
   id: number;
-  x : number;
-  y : number;
   position : Position;
-  color : string;
+  animal : Animal;
 }
+
+

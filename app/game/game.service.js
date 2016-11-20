@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var position_1 = require('./meeples/position');
 var position_service_1 = require("./position.service");
+var Animal_1 = require("./meeples/Animal");
 var GameService = (function () {
     function GameService(positionService) {
         this.positionService = positionService;
+        this.currentPlayer = Animal_1.Animal.Goat;
     }
     GameService.prototype.updateLastPosition = function (x, y) {
         this.lastPosition = this.getPosition(x, y);
@@ -24,7 +26,7 @@ var GameService = (function () {
     };
     GameService.prototype.canMove = function (meeple) {
         var position = this.intersectsWithPosition(meeple);
-        return position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
+        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.occupied && (!this.onBoard() || this.isNeighbourField(position));
     };
     GameService.prototype.intersectsWithPosition = function (meeple) {
         var intersectionPositions = this.positionService.getPositions().filter(function (position) {
@@ -84,12 +86,29 @@ var GameService = (function () {
     };
     GameService.prototype.moveToPosition = function (intersectingPosition) {
         intersectingPosition.occupied = true;
-        this.getPosition(this.lastPosition.x, this.lastPosition.y).occupied = false;
+        var position = this.getPosition(this.lastPosition.x, this.lastPosition.y);
+        if (position) {
+            position.occupied = false;
+        }
+        this.nextPlayer();
     };
     GameService.prototype.getPosition = function (x, y) {
         return this.positionService.getPositions().filter(function (position) {
             return position.x === x && position.y === y;
         })[0];
+    };
+    GameService.prototype.nextPlayer = function () {
+        switch (this.currentPlayer) {
+            case Animal_1.Animal.Goat:
+                this.currentPlayer = Animal_1.Animal.Tiger;
+                break;
+            case Animal_1.Animal.Tiger:
+                this.currentPlayer = Animal_1.Animal.Goat;
+                break;
+        }
+    };
+    GameService.prototype.isMeepleOfCurrentPlayer = function (meeple) {
+        return meeple.animal === this.currentPlayer;
     };
     GameService = __decorate([
         core_1.Injectable(), 
