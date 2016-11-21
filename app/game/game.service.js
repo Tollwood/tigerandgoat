@@ -158,31 +158,32 @@ var GameService = (function () {
         }
     };
     GameService.prototype.isGoatInDirection = function (lastPosition, direction) {
+        var positionToCheckForGoat;
         switch (direction) {
             case Direction.UP:
-                var position = this.getPosition(lastPosition.x, lastPosition.y - 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x, lastPosition.y - 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.UP_RIGHT:
-                var position = this.getPosition(lastPosition.x + 100, lastPosition.y - 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y - 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.RIGHT:
-                var position = this.getPosition(lastPosition.x + 100, lastPosition.y);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.DOWN_RIGHT:
-                var position = this.getPosition(lastPosition.x + 100, lastPosition.y + 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y + 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.DOWN:
-                var position = this.getPosition(lastPosition.x, lastPosition.y + 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x, lastPosition.y + 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.DOWN_LEFT:
-                var position = this.getPosition(lastPosition.x - 100, lastPosition.y + 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y + 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.LEFT:
-                var position = this.getPosition(lastPosition.x - 100, lastPosition.y);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
             case Direction.UP_LEFT:
-                var position = this.getPosition(lastPosition.x - 100, lastPosition.y - 100);
-                return position.animal === Animal_1.Animal.Goat;
+                positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y - 100);
+                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
         }
     };
     GameService = __decorate([
