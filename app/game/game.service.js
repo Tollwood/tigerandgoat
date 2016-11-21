@@ -126,9 +126,64 @@ var GameService = (function () {
     };
     GameService.prototype.canJumpOverGoat = function (position, meeple) {
         var isTwoFieldsAway = this.isNFieldsAway(position, 2);
+        var direction = this.getDirection(position);
+        var isGoatInbetween = this.isGoatInDirection(this.lastPosition, direction);
         var isTiger = meeple.animal === Animal_1.Animal.Tiger;
-        var isGoatInbetween = true;
         return isTiger && isTwoFieldsAway && isGoatInbetween;
+    };
+    GameService.prototype.getDirection = function (position) {
+        if (this.lastPosition.x === position.x && this.lastPosition.y > position.y) {
+            return Direction.UP;
+        }
+        if (this.lastPosition.x === position.x && this.lastPosition.y < position.y) {
+            return Direction.DOWN;
+        }
+        if (this.lastPosition.x < position.x && this.lastPosition.y === position.y) {
+            return Direction.RIGHT;
+        }
+        if (this.lastPosition.x > position.x && this.lastPosition.y === position.y) {
+            return Direction.LEFT;
+        }
+        if (this.lastPosition.x < position.x && this.lastPosition.y < position.y) {
+            return Direction.DOWN_RIGHT;
+        }
+        if (this.lastPosition.x < position.x && this.lastPosition.y > position.y) {
+            return Direction.UP_RIGHT;
+        }
+        if (this.lastPosition.x > position.x && this.lastPosition.y > position.y) {
+            return Direction.UP_LEFT;
+        }
+        if (this.lastPosition.x > position.x && this.lastPosition.y < position.y) {
+            return Direction.DOWN_LEFT;
+        }
+    };
+    GameService.prototype.isGoatInDirection = function (lastPosition, direction) {
+        switch (direction) {
+            case Direction.UP:
+                var position = this.getPosition(lastPosition.x, lastPosition.y - 100);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.UP_RIGHT:
+                var position = this.getPosition(lastPosition.x + 100, lastPosition.y - 100);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.RIGHT:
+                var position = this.getPosition(lastPosition.x + 100, lastPosition.y);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.DOWN_RIGHT:
+                var position = this.getPosition(lastPosition.x + 100, lastPosition.y + 100);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.DOWN:
+                var position = this.getPosition(lastPosition.x, lastPosition.y + 100);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.DOWN_LEFT:
+                var position = this.getPosition(lastPosition.x - 100, lastPosition.y + 100);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.LEFT:
+                var position = this.getPosition(lastPosition.x - 100, lastPosition.y);
+                return position.animal === Animal_1.Animal.Goat;
+            case Direction.UP_LEFT:
+                var position = this.getPosition(lastPosition.x - 100, lastPosition.y - 100);
+                return position.animal === Animal_1.Animal.Goat;
+        }
     };
     GameService = __decorate([
         core_1.Injectable(), 
@@ -137,6 +192,17 @@ var GameService = (function () {
     return GameService;
 }());
 exports.GameService = GameService;
+(function (Direction) {
+    Direction[Direction["UP"] = 1] = "UP";
+    Direction[Direction["UP_LEFT"] = 2] = "UP_LEFT";
+    Direction[Direction["LEFT"] = 3] = "LEFT";
+    Direction[Direction["DOWN_LEFT"] = 4] = "DOWN_LEFT";
+    Direction[Direction["DOWN"] = 5] = "DOWN";
+    Direction[Direction["DOWN_RIGHT"] = 6] = "DOWN_RIGHT";
+    Direction[Direction["RIGHT"] = 7] = "RIGHT";
+    Direction[Direction["UP_RIGHT"] = 8] = "UP_RIGHT";
+})(exports.Direction || (exports.Direction = {}));
+var Direction = exports.Direction;
 exports.ALLOWED_TO_MOVE_DIAGONAL = [
     new position_1.Position(100, 100),
     new position_1.Position(100, 300),

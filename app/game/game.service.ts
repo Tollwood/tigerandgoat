@@ -145,12 +145,81 @@ export class GameService {
 
   private canJumpOverGoat(position: createjs.Container, meeple:Meeple) {
     let isTwoFieldsAway = this.isNFieldsAway(position,2);
+    let direction = this.getDirection(position);
+    let isGoatInbetween = this.isGoatInDirection(this.lastPosition,direction);
   let isTiger = meeple.animal === Animal.Tiger;
-    let isGoatInbetween = true;
+
     return isTiger && isTwoFieldsAway && isGoatInbetween;
   }
+
+  private getDirection(position: createjs.Container) {
+    if(this.lastPosition.x === position.x && this.lastPosition.y > position.y){
+      return Direction.UP;
+    }
+    if(this.lastPosition.x === position.x && this.lastPosition.y < position.y){
+      return Direction.DOWN;
+    }
+    if(this.lastPosition.x < position.x && this.lastPosition.y === position.y){
+      return Direction.RIGHT;
+    }
+    if(this.lastPosition.x > position.x && this.lastPosition.y === position.y){
+      return Direction.LEFT;
+    }
+    if(this.lastPosition.x < position.x && this.lastPosition.y < position.y){
+      return Direction.DOWN_RIGHT;
+    }
+    if(this.lastPosition.x < position.x && this.lastPosition.y > position.y){
+      return Direction.UP_RIGHT;
+    }
+    if(this.lastPosition.x > position.x && this.lastPosition.y > position.y){
+      return Direction.UP_LEFT;
+    }
+    if(this.lastPosition.x > position.x && this.lastPosition.y < position.y){
+      return Direction.DOWN_LEFT;
+    }
+
+  }
+
+  private isGoatInDirection(lastPosition: any, direction: Direction|Direction|Direction|Direction|Direction|Direction|any) {
+    switch(direction){
+      case Direction.UP:
+        let position = this.getPosition(lastPosition.x, lastPosition.y -100);
+        return position.animal === Animal.Goat;
+      case Direction.UP_RIGHT:
+        let position = this.getPosition(lastPosition.x + 100, lastPosition.y -100);
+        return position.animal === Animal.Goat;
+      case Direction.RIGHT:
+        let position = this.getPosition(lastPosition.x + 100, lastPosition.y);
+        return position.animal === Animal.Goat;
+      case Direction.DOWN_RIGHT:
+        let position = this.getPosition(lastPosition.x + 100, lastPosition.y +100);
+        return position.animal === Animal.Goat;
+      case Direction.DOWN:
+        let position = this.getPosition(lastPosition.x, lastPosition.y +100);
+        return position.animal === Animal.Goat;
+      case Direction.DOWN_LEFT:
+        let position = this.getPosition(lastPosition.x -100, lastPosition.y +100);
+        return position.animal === Animal.Goat;
+      case Direction.LEFT:
+        let position = this.getPosition(lastPosition.x- 100 , lastPosition.y);
+        return position.animal === Animal.Goat;
+      case Direction.UP_LEFT:
+        let position = this.getPosition(lastPosition.x -100, lastPosition.y -100);
+        return position.animal === Animal.Goat;
+      }
+    }
 }
 
+export enum Direction {
+  UP = 1,
+  UP_LEFT,
+  LEFT,
+  DOWN_LEFT,
+  DOWN,
+  DOWN_RIGHT,
+  RIGHT,
+  UP_RIGHT
+}
 
 export const ALLOWED_TO_MOVE_DIAGONAL: Position[] = [
   new Position(100,100),
