@@ -1,8 +1,11 @@
 import {Animal} from "./Animal";
-export class Position extends createjs.Container{
+export class Position {
+  x;
+  y;
+  id;
 
-  constructor(x:number,y:number){
-    super();
+  constructor(id: number, x:number,y:number){
+    this.id = id;
     this.x = x;
     this.y = y;
   }

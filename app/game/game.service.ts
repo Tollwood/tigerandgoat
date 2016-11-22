@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Position } from './meeples/position';
-import {PositionService} from "./position.service";
 import {Meeple} from "./meeples/meeple";
 import {Animal} from "./meeples/Animal";
 
@@ -12,60 +11,39 @@ export class GameService {
   private lastPosition ;
   private currentPlayer : Animal = Animal.Goat;
 
-  constructor(private positionService : PositionService){}
-
   public updateLastPosition(x : number, y: number){
     this.lastPosition = this.getPosition(x,y);
     if(!this.lastPosition){
-      this.lastPosition = new Position(x,y);
+      this.lastPosition = new Position(-1, x,y);
     }
     console.log("x: "+ x + " y: " + y);
   }
-    public canMove(meeple :Meeple){
-      let position =this.intersectsWithPosition(meeple);
+    public canMove(x: number, y:number, meeple :Meeple){
+      let position = this.getPosition(x,y);
       return this.isMeepleOfCurrentPlayer(meeple) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position,1) || this.canJumpOverGoat(position,meeple));
     }
 
-  public intersectsWithPosition(meeple : createjs.Container) {
-    let intersectionPositions = this.positionService.getPositions().filter(function (position) {
-      var objBounds2 = position.getBounds().clone();
-      var objBounds1 = meeple.getBounds().clone();
-      var pt = meeple.globalToLocal(objBounds2.x, objBounds2.y);
-
-      var h1 = -(objBounds1.height / 2 + objBounds2.height);
-      var h2 = objBounds2.width / 2;
-      var w1 = -(objBounds1.width / 2 + objBounds2.width);
-      var w2 = objBounds2.width / 2;
-
-
-      if (pt.x > w2 || pt.x < w1) return false;
-      if (pt.y > h2 || pt.y < h1) return false;
-
-      return true;
-    });
-    if(intersectionPositions.length > 0){
-      return intersectionPositions[0];
-    }
-    return;
+  getFields(){
+    return VALID_POSITION;
   }
 
   public getLastPosition() {
     return this.lastPosition;
   }
 
-  private isNFieldsAway(position: createjs.Container,steps:number) {
+  private isNFieldsAway(position: Position,steps:number) {
     return this.isVerticalNeighbour(position,steps) || this.isHorizontalNeighbour(position,steps) || this.isDiagnoalNeighbour(position,steps);
   }
 
-  private isVerticalNeighbour(position: createjs.Container,steps:number) {
+  private isVerticalNeighbour(position: Position,steps:number) {
     return this.lastPosition.x === position.x  && (this.isUpwardsMove(position,steps) || this.isDownWardsMove(position,steps));
   }
 
-  private isHorizontalNeighbour( position: createjs.Container,steps:number) {
+  private isHorizontalNeighbour( position: Position,steps:number) {
     return this.lastPosition.y === position.y  && (this.isRightMove(position,steps) || this.isLeftMove(position,steps));
   }
 
-  private isDiagnoalNeighbour(position: createjs.Container,steps:number) {
+  private isDiagnoalNeighbour(position: Position,steps:number) {
     return this.isAllowedToMoveDiagonal(this.lastPosition) && (this.isRightMove(position,steps) || this.isLeftMove(position,steps)) && (this.isUpwardsMove(position,steps) || this.isDownWardsMove(position,steps));
   }
 
@@ -76,20 +54,20 @@ export class GameService {
     return allowedPositions.length > 0;
   }
 
-  private isUpwardsMove(position: createjs.Container,steps : number) {
+  private isUpwardsMove(position: Position,steps : number) {
     return this.lastPosition.y + 100 * steps === position.y;
   }
 
-  private isRightMove(position: createjs.Container,steps : number) {
+  private isRightMove(position: Position,steps : number) {
     return this.lastPosition.x + 100 * steps === position.x;
   }
 
-  private isDownWardsMove(position: createjs.Container,steps : number) {
+  private isDownWardsMove(position: Position,steps : number) {
 
     return this.lastPosition.y - 100 * steps === position.y;
   }
 
-  private isLeftMove(position: createjs.Container,steps : number) {
+  private isLeftMove(position: Position,steps : number) {
     return this.lastPosition.x -100 * steps === position.x;
   }
 
@@ -97,18 +75,19 @@ export class GameService {
     return this.lastPosition.y <= 500;
   }
 
-  moveToPosition(intersectingPosition: Position, meeple :Meeple) {
-    intersectingPosition.animal = meeple.animal;
-    let position = this.getPosition(this.lastPosition.x,this.lastPosition.y);
-    if(position){
-      position.animal = undefined;
+  moveToField(x : number, y: number, meeple :Meeple) {
+    let position : Position = this.getPosition(x,y);
+    position.animal = meeple.animal;
+    let lastPosition = this.getPosition(this.lastPosition.x,this.lastPosition.y);
+    if(lastPosition){
+      lastPosition.animal = undefined;
     }
     this.nextPlayer();
 
   }
 
   private getPosition(x: number, y: number) : Position {
-    return this.positionService.getPositions().filter(function(position){
+    return VALID_POSITION.filter(function(position){
         return position.x === x && position.y ===y;
     })[0];
   }
@@ -129,10 +108,9 @@ export class GameService {
   }
 
   updateFields(meeples: Meeple[]) {
-    let positions = this.positionService.getPositions();
-    for(let i = 0; i< positions.length; i++){
+    for(let i = 0; i< VALID_POSITION.length; i++){
       var match = false;
-      let position = positions[i];
+      let position = VALID_POSITION[i];
       for(let j = 0; j< meeples.length ; j++) {
         let meeple = meeples[j];
         match = meeple.x === position.x && meeple.y === position.y;
@@ -143,7 +121,7 @@ export class GameService {
      }
   }
 
-  private canJumpOverGoat(position: createjs.Container, meeple:Meeple) {
+  private canJumpOverGoat(position: Position, meeple:Meeple) {
     let isTwoFieldsAway = this.isNFieldsAway(position,2);
     let direction = this.getDirection(position);
     let isGoatInbetween = this.isGoatInDirection(this.lastPosition,direction);
@@ -152,7 +130,7 @@ export class GameService {
     return isTiger && isTwoFieldsAway && isGoatInbetween;
   }
 
-  private getDirection(position: createjs.Container) {
+  private getDirection(position: Position) {
     if(this.lastPosition.x === position.x && this.lastPosition.y > position.y){
       return Direction.UP;
     }
@@ -223,18 +201,51 @@ export enum Direction {
 }
 
 export const ALLOWED_TO_MOVE_DIAGONAL: Position[] = [
-  new Position(100,100),
-  new Position(100,300),
-  new Position(100,300),
-  new Position(100,500),
-  new Position(200,200),
-  new Position(200,400),
-  new Position(300,100),
-  new Position(300,300),
-  new Position(300,500),
-  new Position(200,400),
-  new Position(400,400),
-  new Position(500,100),
-  new Position(500,300),
-  new Position(500,500)
+  new Position(0,100,100),
+  new Position(1,100,300),
+  new Position(2,100,300),
+  new Position(3,100,500),
+  new Position(4,200,200),
+  new Position(5,200,400),
+  new Position(6,300,100),
+  new Position(7,300,300),
+  new Position(8,300,500),
+  new Position(9,200,400),
+  new Position(10,400,400),
+  new Position(11,500,100),
+  new Position(12,500,300),
+  new Position(13,500,500)
+];
+
+
+export var VALID_POSITION : Position[] = [
+  new Position(0,100, 100),
+  new Position(1,100, 200),
+  new Position(2,100, 300),
+  new Position(3,100, 400),
+  new Position(4,100, 500),
+
+  new Position(5,200, 100),
+  new Position(6,200, 200),
+  new Position(7,200, 300),
+  new Position(8,200, 400),
+  new Position(9,200, 500),
+
+  new Position(10,300, 100),
+  new Position(11,300, 200),
+  new Position(12,300, 300),
+  new Position(13,300, 400),
+  new Position(14,300, 500),
+
+  new Position(15,400, 100),
+  new Position(16,400, 200),
+  new Position(17,400, 300),
+  new Position(18,400, 400),
+  new Position(19,400, 500),
+
+  new Position(20,500, 100),
+  new Position(21,500, 200),
+  new Position(22,500, 300),
+  new Position(23,500, 400),
+  new Position(24,500, 500)
 ];

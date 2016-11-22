@@ -18,7 +18,6 @@ var heroes_component_1 = require('./heroes.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var hero_service_1 = require('./hero.service');
 var gameboard_component_1 = require('./game/gameboard.component');
-var position_service_1 = require('./game/position.service');
 var meeple_service_1 = require('./game/meeples/meeple.service');
 var game_service_1 = require("./game/game.service");
 var render_service_1 = require("./game/render.service");
@@ -42,7 +41,6 @@ var AppModule = (function () {
             providers: [
                 hero_service_1.HeroService,
                 render_service_1.RenderService,
-                position_service_1.PositionService,
                 meeple_service_1.MeepleService,
                 game_service_1.GameService],
             bootstrap: [
