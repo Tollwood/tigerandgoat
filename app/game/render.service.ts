@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Meeple} from "./meeples/meeple";
 import {GameService} from "./game.service";
-import {Position} from "./meeples/position";
+import {Field} from "./meeples/field";
 declare var createjs: any;
 
 @Injectable()
@@ -64,7 +64,7 @@ export class RenderService{
     return this.stage;
   }
 
-  renderFields(positions: Position[]) {
+  renderFields(positions: Field[]) {
     for(let i = 0; i< positions.length; i++){
         let field = positions[i];
         let destHeight = 50;

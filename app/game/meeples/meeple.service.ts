@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Meeple } from './meeple';
-import {Animal} from "./Animal";
+import {Animal} from "./animal";
 
 declare var createjs: any;
 

@@ -4,7 +4,7 @@ import {MeepleService} from "./meeples/meeple.service";
 import {GameService} from "./game.service";
 import {RenderService} from "./render.service";
 
-import {Position} from "./meeples/position";
+import {Field} from "./meeples/field";
 
 declare var createjs: any;
 
@@ -23,7 +23,7 @@ export class GameboardComponent implements OnInit {
   ngOnInit(): void {
     this.renderService.initBoard();
 
-    let positions : Position[] = this.gameService.getFields();
+    let positions : Field[] = this.gameService.getFields();
     this.renderService.renderFields(positions);
 
     let meeples = this.meepleService.initMeeples();

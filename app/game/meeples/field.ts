@@ -1,5 +1,5 @@
-import {Animal} from "./Animal";
-export class Position {
+import {Animal} from "./animal";
+export class Field {
   x;
   y;
   id;

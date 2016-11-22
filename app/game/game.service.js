@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var position_1 = require('./meeples/position');
-var Animal_1 = require("./meeples/Animal");
+var field_1 = require('./meeples/field');
+var animal_1 = require("./meeples/animal");
 var GameService = (function () {
     function GameService() {
-        this.currentPlayer = Animal_1.Animal.Goat;
+        this.currentPlayer = animal_1.Animal.Goat;
     }
     GameService.prototype.updateLastPosition = function (x, y) {
         this.lastPosition = this.getPosition(x, y);
         if (!this.lastPosition) {
-            this.lastPosition = new position_1.Position(-1, x, y);
+            this.lastPosition = new field_1.Field(-1, x, y);
         }
         console.log("x: " + x + " y: " + y);
     };
@@ -81,11 +81,11 @@ var GameService = (function () {
     };
     GameService.prototype.nextPlayer = function () {
         switch (this.currentPlayer) {
-            case Animal_1.Animal.Goat:
-                this.currentPlayer = Animal_1.Animal.Tiger;
+            case animal_1.Animal.Goat:
+                this.currentPlayer = animal_1.Animal.Tiger;
                 break;
-            case Animal_1.Animal.Tiger:
-                this.currentPlayer = Animal_1.Animal.Goat;
+            case animal_1.Animal.Tiger:
+                this.currentPlayer = animal_1.Animal.Goat;
                 break;
         }
     };
@@ -109,7 +109,7 @@ var GameService = (function () {
         var isTwoFieldsAway = this.isNFieldsAway(position, 2);
         var direction = this.getDirection(position);
         var isGoatInbetween = this.isGoatInDirection(this.lastPosition, direction);
-        var isTiger = meeple.animal === Animal_1.Animal.Tiger;
+        var isTiger = meeple.animal === animal_1.Animal.Tiger;
         return isTiger && isTwoFieldsAway && isGoatInbetween;
     };
     GameService.prototype.getDirection = function (position) {
@@ -143,28 +143,28 @@ var GameService = (function () {
         switch (direction) {
             case Direction.UP:
                 positionToCheckForGoat = this.getPosition(lastPosition.x, lastPosition.y - 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.UP_RIGHT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y - 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.RIGHT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.DOWN_RIGHT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x + 100, lastPosition.y + 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.DOWN:
                 positionToCheckForGoat = this.getPosition(lastPosition.x, lastPosition.y + 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.DOWN_LEFT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y + 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.LEFT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
             case Direction.UP_LEFT:
                 positionToCheckForGoat = this.getPosition(lastPosition.x - 100, lastPosition.y - 100);
-                return positionToCheckForGoat.animal === Animal_1.Animal.Goat;
+                return positionToCheckForGoat.animal === animal_1.Animal.Goat;
         }
     };
     GameService = __decorate([
@@ -186,46 +186,46 @@ exports.GameService = GameService;
 })(exports.Direction || (exports.Direction = {}));
 var Direction = exports.Direction;
 exports.ALLOWED_TO_MOVE_DIAGONAL = [
-    new position_1.Position(0, 100, 100),
-    new position_1.Position(1, 100, 300),
-    new position_1.Position(2, 100, 300),
-    new position_1.Position(3, 100, 500),
-    new position_1.Position(4, 200, 200),
-    new position_1.Position(5, 200, 400),
-    new position_1.Position(6, 300, 100),
-    new position_1.Position(7, 300, 300),
-    new position_1.Position(8, 300, 500),
-    new position_1.Position(9, 200, 400),
-    new position_1.Position(10, 400, 400),
-    new position_1.Position(11, 500, 100),
-    new position_1.Position(12, 500, 300),
-    new position_1.Position(13, 500, 500)
+    new field_1.Field(0, 100, 100),
+    new field_1.Field(1, 100, 300),
+    new field_1.Field(2, 100, 300),
+    new field_1.Field(3, 100, 500),
+    new field_1.Field(4, 200, 200),
+    new field_1.Field(5, 200, 400),
+    new field_1.Field(6, 300, 100),
+    new field_1.Field(7, 300, 300),
+    new field_1.Field(8, 300, 500),
+    new field_1.Field(9, 200, 400),
+    new field_1.Field(10, 400, 400),
+    new field_1.Field(11, 500, 100),
+    new field_1.Field(12, 500, 300),
+    new field_1.Field(13, 500, 500)
 ];
 exports.VALID_POSITION = [
-    new position_1.Position(0, 100, 100),
-    new position_1.Position(1, 100, 200),
-    new position_1.Position(2, 100, 300),
-    new position_1.Position(3, 100, 400),
-    new position_1.Position(4, 100, 500),
-    new position_1.Position(5, 200, 100),
-    new position_1.Position(6, 200, 200),
-    new position_1.Position(7, 200, 300),
-    new position_1.Position(8, 200, 400),
-    new position_1.Position(9, 200, 500),
-    new position_1.Position(10, 300, 100),
-    new position_1.Position(11, 300, 200),
-    new position_1.Position(12, 300, 300),
-    new position_1.Position(13, 300, 400),
-    new position_1.Position(14, 300, 500),
-    new position_1.Position(15, 400, 100),
-    new position_1.Position(16, 400, 200),
-    new position_1.Position(17, 400, 300),
-    new position_1.Position(18, 400, 400),
-    new position_1.Position(19, 400, 500),
-    new position_1.Position(20, 500, 100),
-    new position_1.Position(21, 500, 200),
-    new position_1.Position(22, 500, 300),
-    new position_1.Position(23, 500, 400),
-    new position_1.Position(24, 500, 500)
+    new field_1.Field(0, 100, 100),
+    new field_1.Field(1, 100, 200),
+    new field_1.Field(2, 100, 300),
+    new field_1.Field(3, 100, 400),
+    new field_1.Field(4, 100, 500),
+    new field_1.Field(5, 200, 100),
+    new field_1.Field(6, 200, 200),
+    new field_1.Field(7, 200, 300),
+    new field_1.Field(8, 200, 400),
+    new field_1.Field(9, 200, 500),
+    new field_1.Field(10, 300, 100),
+    new field_1.Field(11, 300, 200),
+    new field_1.Field(12, 300, 300),
+    new field_1.Field(13, 300, 400),
+    new field_1.Field(14, 300, 500),
+    new field_1.Field(15, 400, 100),
+    new field_1.Field(16, 400, 200),
+    new field_1.Field(17, 400, 300),
+    new field_1.Field(18, 400, 400),
+    new field_1.Field(19, 400, 500),
+    new field_1.Field(20, 500, 100),
+    new field_1.Field(21, 500, 200),
+    new field_1.Field(22, 500, 300),
+    new field_1.Field(23, 500, 400),
+    new field_1.Field(24, 500, 500)
 ];
 //# sourceMappingURL=game.service.js.map
