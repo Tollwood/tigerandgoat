@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Meeple} from "./meeples/meeple";
+import {Meeple} from "./units/meeple";
 import {GameService} from "./game.service";
-import {Field} from "./meeples/field";
+import {Field} from "./units/field";
+import {Animal} from "./units/animal";
 declare var createjs: any;
 
 @Injectable()
@@ -9,6 +10,7 @@ export class RenderService{
 
   private stage;
   private fields : Array<createjs.Container> = [];
+  private meeples : Array<createjs.Container> = [];
   constructor(private gameService : GameService){}
 
   initBoard() {
@@ -79,64 +81,13 @@ export class RenderService{
       fieldContainer.setBounds(field.x , field.y -25, destWidth, destHeight);
       fieldContainer.addChild(box);
       this.stage.addChild(fieldContainer);
-      this.fields.push(fieldContainer);
+      this.fields.push(fieldContainer)
 
     }
     this.stage.update();
   }
 
-  initMeeples(meeples: Meeple[]) {
-    for(let i = 0; i < meeples.length; i++){
-      let meeple = meeples[i];
-      this.addMouseDownEvent(meeple,this.gameService);
-      this.addMoveEvent(meeple,this.stage,this.gameService);
-      this.addSnapMeepleToPositionEvent(meeple,this.stage,this.gameService,this);
-      this.getStage().addChild(meeple);
-    }
-    this.stage.update();
-  }
 
-
-  private addMoveEvent(container: createjs.Container, stage :createjs.Stage, gameService : GameService){
-    container.on("pressmove", function(evt : createjs.MouseEvent) {
-      let meeple = evt.currentTarget;
-      if(gameService.isMeepleOfCurrentPlayer(meeple)){
-        meeple.x = evt.stageX;
-        meeple.y = evt.stageY;
-        stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-
-      }
-    });
-  }
-
-  private addSnapMeepleToPositionEvent(meeple : createjs.Container, stage :createjs.Stage, gameService : GameService,renderService : RenderService){
-    meeple.on("pressup", function(evt: createjs.MouseEvent) {
-      let meeple = evt.currentTarget;
-      let position = renderService.intersectsWithField(meeple);
-      if(position && gameService.canMove(position.x, position.y,meeple)){
-        let intersectingPosition = renderService.intersectsWithField(meeple);
-        gameService.moveToField(intersectingPosition.x,intersectingPosition.y,meeple);
-        let box : createjs.DisplayObject = intersectingPosition.getChildAt(0);
-        meeple.x = intersectingPosition.x;
-        meeple.y = intersectingPosition.y;
-        meeple.alpha = 1;
-        stage.update(event);
-      }
-      else{
-        meeple.x = gameService.getLastPosition().x;
-        meeple.y = gameService.getLastPosition().y;
-        stage.update(event);
-      }
-    });
-
-  }
-
-
-  private addMouseDownEvent(meeple: createjs.Container, gameService: GameService) {
-    meeple.addEventListener("mousedown", function(event : createjs.MouseEvent) {
-      gameService.updateLastPosition(event.currentTarget.x,event.currentTarget.y);
-    });
-  }
 
   public intersectsWithField(meeple : createjs.Container) :createjs.Container {
     let intersectingFields = this.fields.filter(function (field) {
@@ -159,5 +110,79 @@ export class RenderService{
       return intersectingFields[0];
     }
     return;
+  }
+
+
+  renderMeeples(meeples: Meeple[]) {
+    for(let i = 0; i < meeples.length; i++){
+      let meeple = meeples[i];
+      var dragRadius = 20;
+      var circle = new createjs.Shape();
+      circle.graphics.beginFill(this.getColorForAnimal(meeple.animal)).drawCircle(0, 0, dragRadius);
+
+      let meepleContainer = new createjs.Container();
+      meepleContainer.addChild(circle);
+      meepleContainer.x = meeple.x;
+      meepleContainer.y = meeple.y;
+      meepleContainer.id =  meeple.id;
+      meepleContainer.setBounds(meeple.x, meeple.y, dragRadius*2, dragRadius*2);
+      this.addMouseDownEvent(meepleContainer,this.gameService);
+      this.addMoveEvent(meepleContainer,this.stage,this.gameService);
+      this.addSnapMeepleToPositionEvent(meepleContainer,this.stage,this.gameService,this);
+      this.getStage().addChild(meepleContainer);
+    }
+    this.stage.update();
+  }
+
+
+  private addMoveEvent(container: createjs.Container, stage :createjs.Stage, gameService : GameService){
+    container.on("pressmove", function(evt : createjs.MouseEvent) {
+      let meeple = evt.currentTarget;
+      if(gameService.isMeepleOfCurrentPlayer(meeple.id)){
+        meeple.x = evt.stageX;
+        meeple.y = evt.stageY;
+        stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+
+      }
+    });
+  }
+
+  private addSnapMeepleToPositionEvent(meeple : createjs.Container, stage :createjs.Stage, gameService : GameService,renderService : RenderService){
+    meeple.on("pressup", function(evt: createjs.MouseEvent) {
+      let meeple = evt.currentTarget;
+      let intersectingPosition = renderService.intersectsWithField(meeple);
+      if(intersectingPosition && gameService.canMove(intersectingPosition.x, intersectingPosition.y,meeple.id)){
+        gameService.moveToField(intersectingPosition.x,intersectingPosition.y,meeple.id);
+        let box : createjs.DisplayObject = intersectingPosition.getChildAt(0);
+        meeple.x = intersectingPosition.x;
+        meeple.y = intersectingPosition.y;
+        meeple.alpha = 1;
+        stage.update(event);
+      }
+      else{
+        meeple.x = gameService.getLastPosition().x;
+        meeple.y = gameService.getLastPosition().y;
+        stage.update(event);
+      }
+    });
+
+  }
+
+
+  private addMouseDownEvent(meeple: createjs.Container, gameService: GameService) {
+    meeple.addEventListener("mousedown", function(event : createjs.MouseEvent) {
+      gameService.updateLastPosition(event.currentTarget.x,event.currentTarget.y);
+    });
+  }
+
+
+  private getColorForAnimal(animal : Animal){
+    switch(animal) {
+      case Animal.Tiger:
+        return "blue";
+
+      case Animal.Goat:
+        return "red";
+    }
   }
 }

@@ -1,8 +1,7 @@
 import {Animal} from "./animal";
 export class Field {
-  x;
-  y;
-  id;
+
+
 
   constructor(id: number, x:number,y:number){
     this.id = id;
@@ -10,6 +9,9 @@ export class Field {
     this.y = y;
   }
 
+  id : number;
+  x : number;
+  y : number;
   animal : Animal;
 
 }

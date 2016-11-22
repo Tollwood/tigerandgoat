@@ -9,12 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var meeple_service_1 = require("./meeples/meeple.service");
 var game_service_1 = require("./game.service");
 var render_service_1 = require("./render.service");
 var GameboardComponent = (function () {
-    function GameboardComponent(meepleService, gameService, renderService) {
-        this.meepleService = meepleService;
+    function GameboardComponent(gameService, renderService) {
         this.gameService = gameService;
         this.renderService = renderService;
     }
@@ -22,8 +20,8 @@ var GameboardComponent = (function () {
         this.renderService.initBoard();
         var positions = this.gameService.getFields();
         this.renderService.renderFields(positions);
-        var meeples = this.meepleService.initMeeples();
-        this.renderService.initMeeples(meeples);
+        var meeples = this.gameService.getMeeples();
+        this.renderService.renderMeeples(meeples);
         this.gameService.updateFields(meeples);
     };
     GameboardComponent = __decorate([
@@ -32,7 +30,7 @@ var GameboardComponent = (function () {
             selector: 'gameboard',
             templateUrl: 'gameboard.component.html',
         }), 
-        __metadata('design:paramtypes', [meeple_service_1.MeepleService, game_service_1.GameService, render_service_1.RenderService])
+        __metadata('design:paramtypes', [game_service_1.GameService, render_service_1.RenderService])
     ], GameboardComponent);
     return GameboardComponent;
 }());

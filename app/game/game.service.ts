@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Field } from './meeples/field';
-import {Meeple} from "./meeples/meeple";
-import {Animal} from "./meeples/animal";
+import { Field } from './units/field';
+import {Meeple} from "./units/meeple";
+import {Animal} from "./units/animal";
 
 declare var createjs: any;
 
@@ -18,9 +18,10 @@ export class GameService {
     }
     console.log("x: "+ x + " y: " + y);
   }
-    public canMove(x: number, y:number, meeple :Meeple){
+    public canMove(x: number, y:number, meepleId :number){
       let position = this.getPosition(x,y);
-      return this.isMeepleOfCurrentPlayer(meeple) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position,1) || this.canJumpOverGoat(position,meeple));
+      let meeple : Meeple = this.getMeepleById(meepleId);
+      return this.isMeepleOfCurrentPlayer(meepleId) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position,1) || this.canJumpOverGoat(position,meeple));
     }
 
   getFields(){
@@ -75,7 +76,8 @@ export class GameService {
     return this.lastPosition.y <= 500;
   }
 
-  moveToField(x : number, y: number, meeple :Meeple) {
+  moveToField(x : number, y: number, meepleId :number) {
+    let meeple = this.getMeepleById(meepleId);
     let position : Field = this.getPosition(x,y);
     position.animal = meeple.animal;
     let lastPosition = this.getPosition(this.lastPosition.x,this.lastPosition.y);
@@ -102,9 +104,16 @@ export class GameService {
         break;
     }
   }
-  isMeepleOfCurrentPlayer(meeple: Meeple) {
+  isMeepleOfCurrentPlayer(meepleId: number) {
+    let meeple : Meeple = this.getMeepleById(meepleId);
     return meeple.animal === this.currentPlayer;
 
+  }
+
+  private getMeepleById(meepleId: number) {
+    return MEEPLES.filter(function(meeple){
+      return meeple.id === meepleId;
+    })[0];
   }
 
   updateFields(meeples: Meeple[]) {
@@ -187,6 +196,10 @@ export class GameService {
         return positionToCheckForGoat.animal === Animal.Goat;
       }
     }
+
+  getMeeples() {
+    return MEEPLES;
+  }
 }
 
 export enum Direction {
@@ -248,4 +261,33 @@ export var VALID_POSITION : Field[] = [
   new Field(22,500, 300),
   new Field(23,500, 400),
   new Field(24,500, 500)
+];
+
+
+export var MEEPLES: Meeple[] = [
+  new Meeple(1, 100, 100,Animal.Tiger),
+  new Meeple(2, 500, 100,Animal.Tiger),
+  new Meeple(3, 100, 500,Animal.Tiger),
+  new Meeple(4, 500, 500,Animal.Tiger),
+  new Meeple (5, 100,560, Animal.Goat),
+  new Meeple (6, 100,610, Animal.Goat),
+  new Meeple (7, 100,660, Animal.Goat),
+  new Meeple (8, 100,710, Animal.Goat),
+  new Meeple (9, 200,560, Animal.Goat),
+  new Meeple (10, 200,610, Animal.Goat),
+  new Meeple (11, 200,660, Animal.Goat),
+  new Meeple (12, 200,710, Animal.Goat),
+  new Meeple ( 13, 300,560, Animal.Goat),
+  new Meeple (14, 300,610, Animal.Goat),
+  new Meeple (15, 300,660, Animal.Goat),
+  new Meeple (16, 300,710, Animal.Goat),
+  new Meeple (17, 400,560, Animal.Goat),
+  new Meeple (18, 400,610, Animal.Goat),
+  new Meeple (19, 400,660, Animal.Goat),
+  new Meeple (20, 400,710, Animal.Goat),
+  new Meeple (21, 500,560, Animal.Goat),
+  new Meeple (22, 500,610, Animal.Goat),
+  new Meeple (23, 500,660, Animal.Goat),
+  new Meeple (24, 500,710, Animal.Goat)
+
 ];

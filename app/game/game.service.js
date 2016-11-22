@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var field_1 = require('./meeples/field');
-var animal_1 = require("./meeples/animal");
+var field_1 = require('./units/field');
+var meeple_1 = require("./units/meeple");
+var animal_1 = require("./units/animal");
 var GameService = (function () {
     function GameService() {
         this.currentPlayer = animal_1.Animal.Goat;
@@ -22,9 +23,10 @@ var GameService = (function () {
         }
         console.log("x: " + x + " y: " + y);
     };
-    GameService.prototype.canMove = function (x, y, meeple) {
+    GameService.prototype.canMove = function (x, y, meepleId) {
         var position = this.getPosition(x, y);
-        return this.isMeepleOfCurrentPlayer(meeple) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position, 1) || this.canJumpOverGoat(position, meeple));
+        var meeple = this.getMeepleById(meepleId);
+        return this.isMeepleOfCurrentPlayer(meepleId) && position && !position.animal && (!this.onBoard() || this.isNFieldsAway(position, 1) || this.canJumpOverGoat(position, meeple));
     };
     GameService.prototype.getFields = function () {
         return exports.VALID_POSITION;
@@ -65,7 +67,8 @@ var GameService = (function () {
     GameService.prototype.onBoard = function () {
         return this.lastPosition.y <= 500;
     };
-    GameService.prototype.moveToField = function (x, y, meeple) {
+    GameService.prototype.moveToField = function (x, y, meepleId) {
+        var meeple = this.getMeepleById(meepleId);
         var position = this.getPosition(x, y);
         position.animal = meeple.animal;
         var lastPosition = this.getPosition(this.lastPosition.x, this.lastPosition.y);
@@ -89,8 +92,14 @@ var GameService = (function () {
                 break;
         }
     };
-    GameService.prototype.isMeepleOfCurrentPlayer = function (meeple) {
+    GameService.prototype.isMeepleOfCurrentPlayer = function (meepleId) {
+        var meeple = this.getMeepleById(meepleId);
         return meeple.animal === this.currentPlayer;
+    };
+    GameService.prototype.getMeepleById = function (meepleId) {
+        return exports.MEEPLES.filter(function (meeple) {
+            return meeple.id === meepleId;
+        })[0];
     };
     GameService.prototype.updateFields = function (meeples) {
         for (var i = 0; i < exports.VALID_POSITION.length; i++) {
@@ -167,6 +176,9 @@ var GameService = (function () {
                 return positionToCheckForGoat.animal === animal_1.Animal.Goat;
         }
     };
+    GameService.prototype.getMeeples = function () {
+        return exports.MEEPLES;
+    };
     GameService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
@@ -227,5 +239,31 @@ exports.VALID_POSITION = [
     new field_1.Field(22, 500, 300),
     new field_1.Field(23, 500, 400),
     new field_1.Field(24, 500, 500)
+];
+exports.MEEPLES = [
+    new meeple_1.Meeple(1, 100, 100, animal_1.Animal.Tiger),
+    new meeple_1.Meeple(2, 500, 100, animal_1.Animal.Tiger),
+    new meeple_1.Meeple(3, 100, 500, animal_1.Animal.Tiger),
+    new meeple_1.Meeple(4, 500, 500, animal_1.Animal.Tiger),
+    new meeple_1.Meeple(5, 100, 560, animal_1.Animal.Goat),
+    new meeple_1.Meeple(6, 100, 610, animal_1.Animal.Goat),
+    new meeple_1.Meeple(7, 100, 660, animal_1.Animal.Goat),
+    new meeple_1.Meeple(8, 100, 710, animal_1.Animal.Goat),
+    new meeple_1.Meeple(9, 200, 560, animal_1.Animal.Goat),
+    new meeple_1.Meeple(10, 200, 610, animal_1.Animal.Goat),
+    new meeple_1.Meeple(11, 200, 660, animal_1.Animal.Goat),
+    new meeple_1.Meeple(12, 200, 710, animal_1.Animal.Goat),
+    new meeple_1.Meeple(13, 300, 560, animal_1.Animal.Goat),
+    new meeple_1.Meeple(14, 300, 610, animal_1.Animal.Goat),
+    new meeple_1.Meeple(15, 300, 660, animal_1.Animal.Goat),
+    new meeple_1.Meeple(16, 300, 710, animal_1.Animal.Goat),
+    new meeple_1.Meeple(17, 400, 560, animal_1.Animal.Goat),
+    new meeple_1.Meeple(18, 400, 610, animal_1.Animal.Goat),
+    new meeple_1.Meeple(19, 400, 660, animal_1.Animal.Goat),
+    new meeple_1.Meeple(20, 400, 710, animal_1.Animal.Goat),
+    new meeple_1.Meeple(21, 500, 560, animal_1.Animal.Goat),
+    new meeple_1.Meeple(22, 500, 610, animal_1.Animal.Goat),
+    new meeple_1.Meeple(23, 500, 660, animal_1.Animal.Goat),
+    new meeple_1.Meeple(24, 500, 710, animal_1.Animal.Goat)
 ];
 //# sourceMappingURL=game.service.js.map

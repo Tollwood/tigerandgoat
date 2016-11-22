@@ -1,15 +1,15 @@
 import {Animal} from "./animal";
-export class Meeple extends createjs.Container{
+export class Meeple{
+
   constructor( id:number, x : number, y: number, animal:Animal){
-    super();
     this.id = id;
     this.x = x;
     this.y = y;
     this.animal = animal;
   }
+
   id: number;
-  position : Position;
+  x : number;
+  y : number;
   animal : Animal;
 }
-
-

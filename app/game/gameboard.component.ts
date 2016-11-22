@@ -1,10 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import {MeepleService} from "./meeples/meeple.service";
 import {GameService} from "./game.service";
 import {RenderService} from "./render.service";
 
-import {Field} from "./meeples/field";
+import {Field} from "./units/field";
 
 declare var createjs: any;
 
@@ -16,7 +15,6 @@ declare var createjs: any;
 
 export class GameboardComponent implements OnInit {
   constructor(
-    private meepleService: MeepleService,
     private gameService : GameService,
     private renderService : RenderService) { }
 
@@ -26,8 +24,8 @@ export class GameboardComponent implements OnInit {
     let positions : Field[] = this.gameService.getFields();
     this.renderService.renderFields(positions);
 
-    let meeples = this.meepleService.initMeeples();
-    this.renderService.initMeeples(meeples);
+    let meeples = this.gameService.getMeeples();
+    this.renderService.renderMeeples(meeples);
     this.gameService.updateFields(meeples);
 
   }
