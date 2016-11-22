@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c0abc27-1e40-4121-8793-1cd5730ba7c1" name="Default" comment="code cleanup Meeple does not depend on createjs anymore">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.service.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.service.ts" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/game/meeples/animal.ts" afterPath="$PROJECT_DIR$/app/game/units/animal.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/game/meeples/field.ts" afterPath="$PROJECT_DIR$/app/game/units/field.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/game/meeples/meeple.ts" afterPath="$PROJECT_DIR$/app/game/units/meeple.ts" />
+    <list default="true" id="0c0abc27-1e40-4121-8793-1cd5730ba7c1" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/dashboard.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/dashboard.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/dashboard.component.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/dashboard.component.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/dashboard.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero-detail.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero-detail.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero-detail.component.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero-detail.component.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero-detail.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.service.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.service.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.service.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/hero.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/heroes.component.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/heroes.component.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/heroes.component.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/heroes.component.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/heroes.component.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/mock-heroes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/mock-heroes.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/mock-heroes.ts" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-routing.module.js" afterPath="$PROJECT_DIR$/app/app-routing.module.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-routing.module.js.map" afterPath="$PROJECT_DIR$/app/app-routing.module.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-routing.module.ts" afterPath="$PROJECT_DIR$/app/app-routing.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.component.css" afterPath="$PROJECT_DIR$/app/app.component.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.js" afterPath="$PROJECT_DIR$/app/app.module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.js.map" afterPath="$PROJECT_DIR$/app/app.module.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.module.ts" afterPath="$PROJECT_DIR$/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js" afterPath="$PROJECT_DIR$/app/game/game.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.js.map" afterPath="$PROJECT_DIR$/app/game/game.service.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/game.service.ts" afterPath="$PROJECT_DIR$/app/game/game.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.js" afterPath="$PROJECT_DIR$/app/game/gameboard.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.js.map" afterPath="$PROJECT_DIR$/app/game/gameboard.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/gameboard.component.ts" afterPath="$PROJECT_DIR$/app/game/gameboard.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/render.service.ts" afterPath="$PROJECT_DIR$/app/game/render.service.ts" />
     </list>
     <ignored path="TigerAndGoat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,16 +62,6 @@
               <folding>
                 <element signature="e#1#51#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gameboard.component.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/game/gameboard.component.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -95,8 +98,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="field.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/game/units/field.ts">
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+                <marker date="1479842825000" expanded="true" signature="454:684" ph="{...}" />
+                <marker date="1479842825000" expanded="true" signature="547:593" ph="[...]" />
+                <marker date="1479842825000" expanded="true" signature="608:645" ph="[...]" />
+                <marker date="1479842825000" expanded="true" signature="712:715" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
@@ -105,23 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+      <file leaf-file-name="app.component.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/app.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="animal.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/game/units/animal.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,13 +137,33 @@
       <file leaf-file-name="render.service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/game/render.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-331">
-              <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+            <state relative-caret-position="554">
+              <caret line="152" column="75" selection-start-line="152" selection-start-column="75" selection-end-line="152" selection-end-column="75" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="n#!!block;n#drawBoard#0;n#RenderService#0" expanded="false" />
                 <element signature="n#!!block;n#renderFields#0;n#RenderService#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/main.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app-routing.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/app-routing.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -185,7 +212,6 @@
         <option value="$PROJECT_DIR$/app/game/game.component.ts" />
         <option value="$PROJECT_DIR$/app/game/game.component.js" />
         <option value="$PROJECT_DIR$/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/goat.ts" />
         <option value="$PROJECT_DIR$/app/game/gameboard.component.html" />
         <option value="$PROJECT_DIR$/app/game/meeples/validPosition.ts" />
@@ -202,13 +228,15 @@
         <option value="$PROJECT_DIR$/app/game/meeples/position.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/field.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/meeple.service.ts" />
-        <option value="$PROJECT_DIR$/app/app.module.ts" />
         <option value="$PROJECT_DIR$/app/game/gameboard.component.ts" />
         <option value="$PROJECT_DIR$/app/game/meeples/meeple.ts" />
         <option value="$PROJECT_DIR$/app/game/render.service.ts" />
         <option value="$PROJECT_DIR$/app/game/game.service.ts" />
         <option value="$PROJECT_DIR$/app/game/units/field.ts" />
         <option value="$PROJECT_DIR$/app/game/units/meeple.ts" />
+        <option value="$PROJECT_DIR$/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/app/app.component.css" />
       </list>
     </option>
   </component>
@@ -786,7 +814,7 @@
       <workItem from="1479494222135" duration="14641000" />
       <workItem from="1479540607208" duration="32966000" />
       <workItem from="1479750578550" duration="2755000" />
-      <workItem from="1479762469384" duration="8153000" />
+      <workItem from="1479762469384" duration="8278000" />
     </task>
     <task id="LOCAL-00001" summary="extend position with createjs.container&#10;">
       <created>1479599438448</created>
@@ -858,11 +886,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479840965838</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="code cleanup Meeple does not depend on createjs anymore">
+      <created>1479842754982</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1479842754982</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67627000" />
+    <option name="totallyTimeSpent" value="67752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="843" y="23" width="1717" height="1331" extended-state="0" />
@@ -938,9 +973,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,20 +1086,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/dashboard.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1107,9 +1126,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1152,20 +1169,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/dashboard.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1202,28 +1210,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/meeples/meeple.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1288,10 +1278,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+            <marker date="1479842825000" expanded="true" signature="454:684" ph="{...}" />
+            <marker date="1479842825000" expanded="true" signature="547:593" ph="[...]" />
+            <marker date="1479842825000" expanded="true" signature="608:645" ph="[...]" />
+            <marker date="1479842825000" expanded="true" signature="712:715" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/render.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+        <state relative-caret-position="554">
+          <caret line="152" column="75" selection-start-line="152" selection-start-column="75" selection-end-line="152" selection-end-column="75" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="n#!!block;n#drawBoard#0;n#RenderService#0" expanded="false" />
