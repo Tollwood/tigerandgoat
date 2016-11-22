@@ -13,6 +13,7 @@ import { GameboardComponent }         from './game/gameboard.component';
 import { PositionService} from './game/position.service';
 import { MeepleService} from './game/meeples/meeple.service';
 import {GameService} from "./game/game.service";
+import {RenderService} from "./game/render.service";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {GameService} from "./game/game.service";
   ],
   providers: [
     HeroService,
+    RenderService,
     PositionService,
     MeepleService,
     GameService],

@@ -12,98 +12,21 @@ var core_1 = require('@angular/core');
 var position_service_1 = require('./position.service');
 var meeple_service_1 = require("./meeples/meeple.service");
 var game_service_1 = require("./game.service");
+var render_service_1 = require("./render.service");
 var GameboardComponent = (function () {
-    function GameboardComponent(positionService, meepleService, gameService) {
+    function GameboardComponent(positionService, meepleService, gameService, renderService) {
         this.positionService = positionService;
         this.meepleService = meepleService;
         this.gameService = gameService;
+        this.renderService = renderService;
     }
     GameboardComponent.prototype.ngOnInit = function () {
-        var stage = new createjs.Stage("gameboard");
-        this.drawBoard(stage);
+        this.renderService.initBoard();
         var positions = this.positionService.initValidPositions();
-        positions.forEach(function (validPosition) {
-            stage.addChild(validPosition);
-        });
+        this.renderService.renderFields(positions);
         var meeples = this.meepleService.initMeeples();
-        for (var i = 0; i < meeples.length; i++) {
-            var meeple = meeples[i];
-            this.addMouseDownEvent(meeple, this.gameService);
-            this.addMoveEvent(meeple, stage, this.gameService);
-            this.addSnapMeepleToPositionEvent(meeple, stage, this.gameService);
-            stage.addChild(meeple);
-        }
+        this.renderService.initMeeples(meeples);
         this.gameService.updateFields(meeples);
-        stage.mouseMoveOutside = true;
-        stage.update();
-    };
-    GameboardComponent.prototype.drawBoard = function (stage) {
-        var background = new createjs.Shape();
-        background.graphics.beginFill("Black").drawRect(0, 0, 600, 800);
-        stage.addChild(background);
-        for (var i = 0; i < 5; i++) {
-            var backgroundLine = new createjs.Shape();
-            backgroundLine.graphics.beginFill("White").drawRect(100, 100 + i * 100, 400, 1);
-            stage.addChild(backgroundLine);
-        }
-        for (var i = 0; i < 5; i++) {
-            var backgroundLine = new createjs.Shape();
-            backgroundLine.graphics.beginFill("White").drawRect(100 + i * 100, 100, 1, 400);
-            stage.addChild(backgroundLine);
-        }
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(100, 100).lineTo(500, 500);
-        stage.addChild(diagonalLine);
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(100, 500).lineTo(500, 100);
-        stage.addChild(diagonalLine);
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(100, 300).lineTo(300, 500);
-        stage.addChild(diagonalLine);
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(100, 300).lineTo(300, 100);
-        stage.addChild(diagonalLine);
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(300, 100).lineTo(500, 300);
-        stage.addChild(diagonalLine);
-        var diagonalLine = new createjs.Shape();
-        diagonalLine.graphics.beginStroke("White").moveTo(300, 500).lineTo(500, 300);
-        stage.addChild(diagonalLine);
-        return stage;
-    };
-    GameboardComponent.prototype.addMoveEvent = function (container, stage, gameService) {
-        container.on("pressmove", function (evt) {
-            var meeple = evt.currentTarget;
-            if (gameService.isMeepleOfCurrentPlayer(meeple)) {
-                meeple.x = evt.stageX;
-                meeple.y = evt.stageY;
-                stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
-            }
-        });
-    };
-    GameboardComponent.prototype.addSnapMeepleToPositionEvent = function (meeple, stage, gameService) {
-        meeple.on("pressup", function (evt) {
-            var meeple = evt.currentTarget;
-            if (gameService.canMove(meeple)) {
-                var intersectingPosition = gameService.intersectsWithPosition(meeple);
-                gameService.moveToPosition(intersectingPosition, meeple);
-                var box = intersectingPosition.getChildAt(0);
-                meeple.x = intersectingPosition.x;
-                meeple.y = intersectingPosition.y;
-                meeple.alpha = 1;
-                stage.update(event);
-            }
-            else {
-                meeple.x = gameService.getLastPosition().x;
-                meeple.y = gameService.getLastPosition().y;
-                stage.update(event);
-            }
-        });
-    };
-    GameboardComponent.prototype.addMouseDownEvent = function (meeple, gameService) {
-        meeple.addEventListener("mousedown", function (event) {
-            gameService.updateLastPosition(event.currentTarget.x, event.currentTarget.y);
-        });
     };
     GameboardComponent = __decorate([
         core_1.Component({
@@ -111,7 +34,7 @@ var GameboardComponent = (function () {
             selector: 'gameboard',
             templateUrl: 'gameboard.component.html',
         }), 
-        __metadata('design:paramtypes', [position_service_1.PositionService, meeple_service_1.MeepleService, game_service_1.GameService])
+        __metadata('design:paramtypes', [position_service_1.PositionService, meeple_service_1.MeepleService, game_service_1.GameService, render_service_1.RenderService])
     ], GameboardComponent);
     return GameboardComponent;
 }());
