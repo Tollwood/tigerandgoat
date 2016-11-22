@@ -10,15 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var dashboard_component_1 = require('./dashboard.component');
-var heroes_component_1 = require('./heroes.component');
-var hero_detail_component_1 = require('./hero-detail.component');
 var gameboard_component_1 = require('./game/gameboard.component');
 var routes = [
     { path: '', redirectTo: '/gameboard', pathMatch: 'full' },
-    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
-    { path: 'detail/:id', component: hero_detail_component_1.HeroDetailComponent },
-    { path: 'heroes', component: heroes_component_1.HeroesComponent },
     { path: 'gameboard', component: gameboard_component_1.GameboardComponent }
 ];
 var AppRoutingModule = (function () {

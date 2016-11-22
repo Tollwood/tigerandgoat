@@ -13,10 +13,6 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_routing_module_1 = require('./app-routing.module');
 var app_component_1 = require('./app.component');
-var dashboard_component_1 = require('./dashboard.component');
-var heroes_component_1 = require('./heroes.component');
-var hero_detail_component_1 = require('./hero-detail.component');
-var hero_service_1 = require('./hero.service');
 var gameboard_component_1 = require('./game/gameboard.component');
 var game_service_1 = require("./game/game.service");
 var render_service_1 = require("./game/render.service");
@@ -32,13 +28,9 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                dashboard_component_1.DashboardComponent,
-                hero_detail_component_1.HeroDetailComponent,
-                heroes_component_1.HeroesComponent,
                 gameboard_component_1.GameboardComponent
             ],
             providers: [
-                hero_service_1.HeroService,
                 render_service_1.RenderService,
                 game_service_1.GameService],
             bootstrap: [
